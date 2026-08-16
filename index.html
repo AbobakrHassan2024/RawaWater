@@ -327,6 +327,7 @@
         border-radius: 16px;
         background: rgba(255,255,255,0.85);
         border: 1px solid var(--line);
+        backdrop-filter: blur(4px);
       }
 
       .stat strong {
@@ -375,6 +376,12 @@
         border: 1px solid var(--line);
         box-shadow: 0 12px 28px rgba(17, 95, 134, 0.04);
         text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(17, 95, 134, 0.08);
       }
 
       .feature-icon {
@@ -529,6 +536,12 @@
         color: white;
         font-weight: 700;
         cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .add-btn:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(11, 138, 199, 0.3);
       }
 
       .featured-strip {
@@ -548,6 +561,7 @@
         align-items: center;
         justify-content: space-between;
         gap: 18px;
+        backdrop-filter: blur(4px);
       }
 
       .featured-card h3 {
@@ -574,6 +588,11 @@
         border-radius: 18px;
         padding: 18px 12px;
         text-align: center;
+        transition: transform 0.2s;
+      }
+
+      .mini-card:hover {
+        transform: translateY(-4px);
       }
 
       .mini-card strong {
@@ -624,6 +643,14 @@
         background: #f9fcff;
         padding: 14px 16px;
         color: var(--text);
+        transition: border 0.2s;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(11, 138, 199, 0.1);
       }
 
       .field textarea {
@@ -649,6 +676,16 @@
         font-weight: 700;
         padding: 0 16px;
         cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      .ghost-btn:hover {
+        background: rgba(11,138,199,.2);
+        transform: scale(1.03);
       }
 
       .summary-list {
@@ -702,6 +739,12 @@
         font-weight: 800;
         cursor: pointer;
         box-shadow: 0 16px 30px rgba(22, 191, 115, 0.18);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .wa-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(22, 191, 115, 0.25);
       }
 
       .process-grid {
@@ -725,6 +768,7 @@
         border-radius: 26px;
         padding: 24px 28px;
         margin-bottom: 28px;
+        backdrop-filter: blur(4px);
       }
 
       .review-score {
@@ -775,6 +819,12 @@
         border: 1px solid rgba(11,138,199,0.12);
         color: var(--primary-dark);
         font-weight: 800;
+        transition: background 0.2s, transform 0.2s;
+      }
+
+      .btn-google:hover {
+        background: white;
+        transform: scale(1.02);
       }
 
       .review-grid {
@@ -789,6 +839,12 @@
         border-radius: 24px;
         padding: 22px 20px;
         box-shadow: 0 14px 24px rgba(17,95,134,0.04);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .review-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(17,95,134,0.08);
       }
 
       .review-top {
@@ -842,6 +898,11 @@
         border-radius: 18px;
         overflow: hidden;
         box-shadow: 0 12px 24px rgba(17,95,134,0.03);
+        transition: box-shadow 0.2s;
+      }
+
+      .faq-item:hover {
+        box-shadow: 0 16px 32px rgba(17,95,134,0.06);
       }
 
       .faq-question {
@@ -896,6 +957,12 @@
         border-radius: 24px;
         padding: 28px 24px;
         box-shadow: 0 14px 24px rgba(17,95,134,0.04);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .step-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(17,95,134,0.08);
       }
 
       .step-number {
@@ -937,6 +1004,13 @@
         border: 1px solid var(--line);
         border-radius: 28px;
         box-shadow: 0 16px 26px rgba(17,95,134,0.05);
+        transition: box-shadow 0.2s;
+      }
+
+      .info-box:hover,
+      .map-box:hover,
+      .inquiry-box:hover {
+        box-shadow: 0 20px 40px rgba(17,95,134,0.08);
       }
 
       .info-box {
@@ -969,6 +1043,11 @@
         padding: 12px 14px;
         border-radius: 16px;
         background: rgba(11,138,199,0.04);
+        transition: background 0.2s;
+      }
+
+      .contact-item:hover {
+        background: rgba(11,138,199,0.08);
       }
 
       .contact-item .icon {
@@ -1114,6 +1193,12 @@
         place-items: center;
         background: rgba(255,255,255,0.08);
         font-size: 1.2rem;
+        transition: background 0.2s, transform 0.2s;
+      }
+
+      .socials a:hover {
+        background: rgba(255,255,255,0.16);
+        transform: scale(1.08);
       }
 
       .floating-wa {
@@ -1130,6 +1215,11 @@
         place-items: center;
         box-shadow: 0 18px 30px rgba(18, 166, 95, 0.26);
         font-size: 2rem;
+        transition: transform 0.2s;
+      }
+
+      .floating-wa:hover {
+        transform: scale(1.08);
       }
 
       .toast {
@@ -1196,6 +1286,11 @@
         color: var(--primary-dark);
         cursor: pointer;
         font-size: 1.5rem;
+        transition: background 0.2s;
+      }
+
+      .close-cart:hover {
+        background: rgba(11,138,199,0.18);
       }
 
       .cart-body {
@@ -1257,6 +1352,11 @@
         cursor: pointer;
         font-size: 1.2rem;
         font-weight: 700;
+        transition: background 0.2s;
+      }
+
+      .mini-btn:hover {
+        background: rgba(11,138,199,0.16);
       }
 
       .cart-remove {
@@ -1265,6 +1365,11 @@
         color: #d94d5c;
         font-weight: 700;
         cursor: pointer;
+        transition: color 0.2s;
+      }
+
+      .cart-remove:hover {
+        color: #b33b48;
       }
 
       .cart-footer {
@@ -1295,6 +1400,13 @@
         padding: 12px 14px;
         background: #f9fcff;
         font-size: 0.95rem;
+        transition: border 0.2s;
+      }
+
+      .cart-footer .location-row input:focus {
+        border-color: var(--primary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(11, 138, 199, 0.1);
       }
 
       .cart-footer .ghost-btn {
@@ -1306,6 +1418,15 @@
         padding: 0 16px;
         cursor: pointer;
         white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background 0.2s, transform 0.2s;
+      }
+
+      .cart-footer .ghost-btn:hover {
+        background: rgba(11,138,199,.2);
+        transform: scale(1.03);
       }
 
       .cart-footer .summary-list {
@@ -1358,6 +1479,12 @@
         font-weight: 800;
         cursor: pointer;
         box-shadow: 0 16px 30px rgba(22, 191, 115, 0.18);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .cart-footer .wa-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 40px rgba(22, 191, 115, 0.25);
       }
 
       .total-line {
@@ -1374,6 +1501,7 @@
         display: none;
       }
 
+      /* تحسين التجاوب */
       @media (max-width: 980px) {
         .nav {
           flex-wrap: wrap;
@@ -1597,7 +1725,6 @@
           padding: 40px 0;
         }
 
-        /* تحسين عرض السلة في الجوال */
         .cart-panel {
           width: 100%;
         }
@@ -1737,8 +1864,6 @@
           </div>
         </div>
       </section>
-
-      <!-- تم إزالة قسم order-section كامل لأنه أصبح داخل السلة -->
 
       <section class="process-section">
         <div class="container">
@@ -2020,7 +2145,7 @@
           <label>📍 موقع التوصيل</label>
           <div class="location-row">
             <input id="deliveryAddress" type="text" placeholder="أدخل عنوانك بالتفصيل" />
-            <button type="button" class="ghost-btn" id="locateBtn">تحديد</button>
+            <button type="button" class="ghost-btn" id="locateBtn">📍 تحديد</button>
           </div>
         </div>
 
@@ -2212,6 +2337,63 @@
         window.toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
       }
 
+      // عكس الإحداثيات للحصول على عنوان باستخدام Nominatim
+      async function reverseGeocode(lat, lng) {
+        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=ar`;
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error("فشل جلب العنوان");
+          const data = await response.json();
+          if (data && data.display_name) {
+            return data.display_name;
+          } else {
+            return `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+          }
+        } catch (error) {
+          console.error("Reverse geocoding error:", error);
+          return `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+        }
+      }
+
+      // تحديد الموقع باستخدام Geolocation API ثم عكس الإحداثيات
+      document.getElementById("locateBtn").addEventListener("click", async () => {
+        if (!navigator.geolocation) {
+          showToast("❗ خدمة الموقع غير مدعومة في هذا المتصفح");
+          return;
+        }
+
+        const btn = document.getElementById("locateBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "⏳ جاري التحديد...";
+        btn.disabled = true;
+
+        try {
+          const position = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject, {
+              enableHighAccuracy: true,
+              timeout: 10000,
+              maximumAge: 0,
+            });
+          });
+
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+
+          // عرض الإحداثيات مؤقتاً أثناء جلب العنوان
+          document.getElementById("deliveryAddress").value = `⏳ جاري جلب العنوان...`;
+
+          const address = await reverseGeocode(lat, lng);
+          document.getElementById("deliveryAddress").value = address;
+          showToast("✅ تم تحديد موقعك بنجاح");
+        } catch (error) {
+          console.error("Location error:", error);
+          showToast("❗ تعذر تحديد الموقع، الرجاء إدخال العنوان يدويًا");
+        } finally {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      });
+
       function getWhatsAppMessage() {
         const address = document.getElementById("deliveryAddress").value.trim() || "غير محدد";
         const total = cart.reduce((sum, item) => {
@@ -2254,6 +2436,7 @@
           const quantity = Number(qtyEl?.textContent || 1);
           addToCart(productId, quantity);
           qtyEl.textContent = 1;
+          refreshProductTotals();
         }
 
         // تغيير الكمية في المنتج
@@ -2337,20 +2520,6 @@
             behavior: "smooth",
           });
 
-          // فتح القسم إذا كان مطوياً
-          setTimeout(() => {
-            const title = targetSection.querySelector(".section-title");
-            if (title && title.classList.contains("mobile-section-title")) {
-              const isOpen = title.classList.contains("open");
-              if (!isOpen) {
-                title.classList.add("open");
-                const content = targetSection.querySelector(".mobile-section-content");
-                if (content) content.style.display = "block";
-                title.setAttribute("aria-expanded", "true");
-              }
-            }
-          }, 300);
-
           const navLinks = document.getElementById("navLinks");
           if (navLinks) navLinks.classList.remove("open");
         });
@@ -2426,26 +2595,6 @@
           const item = button.closest(".faq-item");
           item.classList.toggle("open");
         });
-      });
-
-      // تحديد الموقع الجغرافي
-      document.getElementById("locateBtn").addEventListener("click", () => {
-        if (!navigator.geolocation) {
-          showToast("❗ خدمة الموقع غير مدعومة في هذا المتصفح");
-          return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            document.getElementById("deliveryAddress").value = `الإحداثيات: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-            showToast("✅ تم تحديد موقعك بنجاح");
-          },
-          () => {
-            showToast("❗ تعذر تحديد الموقع، الرجاء إدخال العنوان يدويًا");
-          }
-        );
       });
 
       // تهيئة الصفحة
