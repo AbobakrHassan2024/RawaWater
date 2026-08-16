@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رواء للمياه</title>
+    <meta
+      name="description"
+      content="رواء للمياه - متجر إلكتروني لطلب المياه والمشروبات، مع إمكانية إرسال الطلب مباشرة عبر واتساب."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #0b8ac7;
+        --primary-dark: #0a5f8a;
+        --primary-soft: #eaf8ff;
+        --secondary: #dff7ff;
+        --accent: #13b7a6;
+        --dark: #153b52;
+        --text: #1d2b36;
+        --muted: #637783;
+        --light: #f8fbfd;
+        --line: #e5edf3;
+        --shadow: 0 18px 45px rgba(15, 85, 127, 0.14);
+        --radius: 22px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Cairo", sans-serif;
+        background: linear-gradient(180deg, #f8fdff 0%, #f3fafe 100%);
+        color: var(--text);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button, input, textarea {
+        font: inherit;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section-title {
+        margin: 0 0 18px;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        color: var(--dark);
+        text-align: center;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: var(--muted);
+        max-width: 700px;
+        margin: 0 auto 30px;
+        line-height: 1.9;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(11, 138, 199, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        color: var(--dark);
+        font-size: 1.6rem;
+      }
+
+      .brand-mark {
+        width: 46px;
+        height: 46px;
+        border-radius: 15px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--primary), #71d5ff);
+        color: white;
+        box-shadow: var(--shadow);
+        font-size: 1.2rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-weight: 600;
+        color: var(--dark);
+      }
+
+      .nav-links a {
+        position: relative;
+        opacity: 0.9;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        bottom: -8px;
+        height: 2px;
+        background: var(--primary);
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: 0.25s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 14px 24px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), #5bbcf6);
+        color: white;
+        box-shadow: 0 14px 28px rgba(11, 138, 199, 0.22);
+      }
+
+      .btn-secondary {
+        background: rgba(11, 138, 199, 0.08);
+        color: var(--primary-dark);
+      }
+
+      .cart-button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(11, 138, 199, 0.08);
+        border: 1px solid rgba(11, 138, 199, 0.15);
+        color: var(--primary-dark);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -6px;
+        left: -4px;
+        min-width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #ff7b54;
+        color: white;
+        display: grid;
+        place-items: center;
+        font-size: 0.72rem;
+        font-weight: 800;
+        border: 2px solid white;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .hero {
+        padding: 48px 0 30px;
+      }
+
+      .hero-box {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(119, 216, 255, 0.18), rgba(255,255,255,0.7));
+        border: 1px solid rgba(11, 138, 199, 0.1);
+        border-radius: 32px;
+        padding: clamp(20px, 4vw, 40px);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-box::before,
+      .hero-box::after {
+        content: "";
+        position: absolute;
+        background: radial-gradient(circle, rgba(76, 196, 255, 0.3), transparent 70%);
+        border-radius: 50%;
+      }
+
+      .hero-box::before {
+        width: 420px;
+        height: 420px;
+        left: -120px;
+        bottom: -150px;
+      }
+
+      .hero-box::after {
+        width: 280px;
+        height: 280px;
+        right: -50px;
+        top: -80px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(19, 183, 166, 0.11);
+        color: var(--accent);
+        border: 1px solid rgba(19, 183, 166, 0.15);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.4rem, 4vw, 4.5rem);
+        line-height: 1.2;
+        color: var(--dark);
+      }
+
+      .hero-text {
+        color: var(--muted);
+        font-size: 1.15rem;
+        line-height: 1.9;
+        margin: 18px 0 24px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+      }
+
+      .stat {
+        min-width: 140px;
+        padding: 14px 18px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.85);
+        border: 1px solid var(--line);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.6rem;
+        color: var(--primary-dark);
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .hero-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .product-showcase {
+        position: relative;
+        width: min(100%, 430px);
+        aspect-ratio: 1 / 1;
+        display: grid;
+        place-items: center;
+      }
+
+      .water-bottle {
+        position: relative;
+        width: 240px;
+        height: 360px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(212,242,255,0.95));
+        border-radius: 30px 30px 36px 36px;
+        border: 2px solid rgba(76, 196, 255, 0.2);
+        box-shadow: 0 25px 48px rgba(32, 123, 177, 0.18);
+        overflow: hidden;
+      }
+
+      .water-bottle::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 110px;
+        height: 40px;
+        background: linear-gradient(180deg, #d1ebff, #bfe4ff);
+        border-radius: 24px 24px 14px 14px;
+        border: 2px solid rgba(76, 196, 255, 0.2);
+      }
+
+      .water-bottle::after {
+        content: "";
+        position: absolute;
+        inset: 50px 22px 26px 22px;
+        background: linear-gradient(180deg, rgba(101, 217, 255, 0.15), rgba(7, 137, 206, 0.12));
+        border-radius: 18px 18px 34px 34px;
+      }
+
+      .water-label {
+        position: absolute;
+        inset: 110px 34px auto 34px;
+        z-index: 1;
+        text-align: center;
+      }
+
+      .water-label strong {
+        display: block;
+        color: var(--primary-dark);
+        font-size: 2rem;
+      }
+
+      .water-label span {
+        color: rgba(21, 59, 82, 0.8);
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .drop {
+        position: absolute;
+        width: 72px;
+        height: 72px;
+        border-radius: 50% 50% 50% 0;
+        background: linear-gradient(180deg, rgba(97, 225, 255, 0.8), rgba(29, 135, 198, 0.7));
+        transform: rotate(-45deg);
+        box-shadow: 0 10px 20px rgba(59, 153, 203, 0.15);
+      }
+
+      .drop.one { left: 18px; bottom: 10px; }
+      .drop.two { right: 26px; top: 30px; width: 60px; height: 60px; }
+      .drop.three { left: 50%; transform: translateX(-50%) rotate(-45deg); top: 94px; width: 56px; height: 56px; }
+
+      .why-section,
+      .products-section,
+      .order-section,
+      .process-section,
+      .contact-section,
+      .cta-section {
+        padding: 80px 0;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: var(--radius);
+        padding: 28px 22px;
+        border: 1px solid var(--line);
+        box-shadow: 0 12px 28px rgba(17, 95, 134, 0.04);
+        text-align: center;
+      }
+
+      .feature-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+        margin: 0 auto 18px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(11,138,199,0.1), rgba(19,183,166,0.13));
+        font-size: 2rem;
+      }
+
+      .feature-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.3rem;
+        color: var(--dark);
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+        box-shadow: 0 12px 24px rgba(17,95,134,0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 32px rgba(17,95,134,0.1);
+      }
+
+      .product-image {
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .product-body {
+        padding: 20px 18px 18px;
+      }
+
+      .product-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .product-name {
+        margin: 0;
+        font-size: 1.5rem;
+        color: var(--dark);
+      }
+
+      .product-pill {
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--primary-soft);
+        color: var(--primary-dark);
+        font-weight: 700;
+        font-size: 0.75rem;
+      }
+
+      .product-desc {
+        margin: 0 0 16px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .product-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .price {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+      }
+
+      .price-block {
+        display: grid;
+        gap: 4px;
+      }
+
+      .product-total {
+        font-size: 0.78rem;
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      .quantity-box {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #f8fbfd;
+        overflow: hidden;
+      }
+
+      .qty-btn {
+        width: 42px;
+        height: 42px;
+        border: none;
+        background: transparent;
+        color: var(--dark);
+        cursor: pointer;
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      .qty-value {
+        min-width: 34px;
+        text-align: center;
+        font-weight: 700;
+        color: var(--dark);
+      }
+
+      .add-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 14px;
+        padding: 14px 16px;
+        border: none;
+        background: linear-gradient(135deg, var(--primary), #4abcf4);
+        color: white;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .featured-strip {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .featured-card {
+        background: linear-gradient(135deg, rgba(11, 138, 199, 0.12), rgba(19, 183, 166, 0.12));
+        border: 1px solid rgba(11, 138, 199, 0.12);
+        border-radius: 28px;
+        padding: clamp(22px, 4vw, 36px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .featured-card h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        color: var(--dark);
+      }
+
+      .featured-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .mini-cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .mini-card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px 12px;
+        text-align: center;
+      }
+
+      .mini-card strong {
+        display: block;
+        font-size: 1.3rem;
+        color: var(--dark);
+      }
+
+      .mini-card span {
+        color: var(--muted);
+      }
+
+      .order-shell {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .order-box,
+      .summary-box {
+        background: white;
+        border-radius: 28px;
+        border: 1px solid var(--line);
+        box-shadow: 0 16px 28px rgba(17, 95, 134, 0.05);
+        padding: 26px;
+      }
+
+      .checkout-form {
+        display: grid;
+        gap: 18px;
+      }
+
+      .field {
+        display: grid;
+        gap: 10px;
+      }
+
+      .field label {
+        font-weight: 700;
+        color: var(--dark);
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: #f9fcff;
+        padding: 14px 16px;
+        color: var(--text);
+      }
+
+      .field textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .location-row {
+        display: flex;
+        gap: 12px;
+      }
+
+      .location-row input {
+        flex: 1;
+      }
+
+      .ghost-btn {
+        border: none;
+        border-radius: 14px;
+        background: rgba(11,138,199,.1);
+        color: var(--primary-dark);
+        font-weight: 700;
+        padding: 0 16px;
+        cursor: pointer;
+      }
+
+      .summary-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .summary-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .summary-item strong {
+        color: var(--dark);
+      }
+
+      .summary-item span {
+        color: var(--muted);
+      }
+
+      .summary-total {
+        margin-top: 20px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--dark);
+      }
+
+      .wa-button {
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 18px 18px;
+        border: none;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #16bf73, #0ca954);
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 16px 30px rgba(22, 191, 115, 0.18);
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .review-section,
+      .faq-section {
+        padding: 80px 0;
+      }
+
+      .review-summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        background: linear-gradient(135deg, rgba(11,138,199,0.1), rgba(19,183,166,0.12));
+        border: 1px solid rgba(11,138,199,0.12);
+        border-radius: 26px;
+        padding: 24px 28px;
+        margin-bottom: 28px;
+      }
+
+      .review-score {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .score-box {
+        width: 94px;
+        height: 94px;
+        border-radius: 24px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--primary), #59bdf5);
+        color: white;
+        font-size: 1.9rem;
+        font-weight: 800;
+        box-shadow: 0 18px 28px rgba(11,138,199,0.2);
+      }
+
+      .score-text h3 {
+        margin: 0;
+        font-size: 2rem;
+        color: var(--dark);
+      }
+
+      .score-text span {
+        color: var(--muted);
+      }
+
+      .stars {
+        display: inline-flex;
+        gap: 4px;
+        color: #ffb400;
+        font-size: 1.1rem;
+        margin-top: 8px;
+      }
+
+      .btn-google {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 14px 20px;
+        background: rgba(255,255,255,0.8);
+        border: 1px solid rgba(11,138,199,0.12);
+        color: var(--primary-dark);
+        font-weight: 800;
+      }
+
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .review-card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 22px 20px;
+        box-shadow: 0 14px 24px rgba(17,95,134,0.04);
+      }
+
+      .review-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .review-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(11,138,199,0.12), rgba(19,183,166,0.12));
+        color: var(--primary-dark);
+        font-weight: 800;
+      }
+
+      .review-user h4 {
+        margin: 0;
+        color: var(--dark);
+        font-size: 1.1rem;
+      }
+
+      .review-card p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .faq-wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        display: grid;
+        gap: 16px;
+      }
+
+      .faq-item {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 12px 24px rgba(17,95,134,0.03);
+      }
+
+      .faq-question {
+        width: 100%;
+        border: none;
+        background: transparent;
+        padding: 20px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 1.08rem;
+        color: var(--dark);
+        font-weight: 700;
+        text-align: right;
+        cursor: pointer;
+      }
+
+      .faq-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(11,138,199,0.08);
+        color: var(--primary-dark);
+        font-weight: 900;
+        transition: transform 0.2s ease;
+      }
+
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        padding: 0 22px;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .faq-item.open .faq-answer {
+        max-height: 200px;
+        padding: 0 22px 20px;
+      }
+
+      .step-card {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 28px 24px;
+        box-shadow: 0 14px 24px rgba(17,95,134,0.04);
+      }
+
+      .step-number {
+        width: 62px;
+        height: 62px;
+        display: grid;
+        place-items: center;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(11,138,199,.12), rgba(19,183,166,.12));
+        color: var(--primary-dark);
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+
+      .step-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.5rem;
+        color: var(--dark);
+      }
+
+      .step-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 28px;
+      }
+
+      .info-box,
+      .map-box,
+      .inquiry-box {
+        background: white;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: 0 16px 26px rgba(17,95,134,0.05);
+      }
+
+      .info-box {
+        padding: 28px;
+      }
+
+      .info-box h3,
+      .inquiry-box h3 {
+        margin: 0 0 12px;
+        font-size: 2rem;
+        color: var(--dark);
+      }
+
+      .info-box p {
+        margin: 0 0 20px;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(11,138,199,0.04);
+      }
+
+      .contact-item .icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, rgba(11,138,199,0.12), rgba(19,183,166,0.12));
+      }
+
+      .contact-item strong {
+        display: block;
+        color: var(--dark);
+      }
+
+      .map-box {
+        overflow: hidden;
+      }
+
+      .map-box iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 420px;
+        border: 0;
+      }
+
+      .inquiry-box {
+        padding: 28px;
+      }
+
+      .inquiry-form {
+        display: grid;
+        gap: 18px;
+      }
+
+      .inquiry-form .field-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .cta-banner {
+        background: linear-gradient(135deg, rgba(11, 138, 199, 0.96), rgba(15, 101, 153, 0.98));
+        border-radius: 30px;
+        padding: clamp(26px, 5vw, 54px);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .cta-banner h3 {
+        margin: 0 0 8px;
+        font-size: clamp(2rem, 4vw, 3rem);
+      }
+
+      .cta-banner p {
+        margin: 0;
+        color: rgba(255,255,255,0.8);
+        font-size: 1.1rem;
+      }
+
+      .cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      footer {
+        background: #0c2134;
+        color: rgba(255,255,255,0.9);
+        padding: 72px 0 24px;
+        margin-top: 70px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.9fr 1fr;
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.7rem;
+      }
+
+      .footer-brand .brand-mark {
+        background: linear-gradient(135deg, #5abef9, #0d7ec7);
+      }
+
+      .footer-copy {
+        margin-top: 18px;
+        color: rgba(255,255,255,0.72);
+        line-height: 1.9;
+      }
+
+      .footer-title {
+        margin: 0 0 18px;
+        color: white;
+        font-size: 1.35rem;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 10px;
+        color: rgba(255,255,255,0.8);
+      }
+
+      .footer-links a {
+        transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.14);
+        padding-top: 18px;
+        text-align: center;
+        color: rgba(255,255,255,0.72);
+      }
+
+      .socials {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .socials a {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: rgba(255,255,255,0.08);
+        font-size: 1.2rem;
+      }
+
+      .floating-wa {
+        position: fixed;
+        left: 22px;
+        bottom: 22px;
+        width: 64px;
+        height: 64px;
+        z-index: 80;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #1ad96d, #19b663);
+        color: white;
+        display: grid;
+        place-items: center;
+        box-shadow: 0 18px 30px rgba(18, 166, 95, 0.26);
+        font-size: 2rem;
+      }
+
+      .toast {
+        position: fixed;
+        top: 90px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-12px);
+        opacity: 0;
+        background: rgba(21,59,82,0.96);
+        color: white;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-weight: 700;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        z-index: 120;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .cart-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(420px, 100%);
+        height: 100vh;
+        background: white;
+        box-shadow: 0 0 50px rgba(0,0,0,0.14);
+        transform: translateX(-105%);
+        transition: transform 0.28s ease;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cart-panel.open {
+        transform: translateX(0);
+      }
+
+      .cart-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 22px 20px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cart-header h3 {
+        margin: 0;
+        font-size: 1.8rem;
+        color: var(--dark);
+      }
+
+      .close-cart {
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 12px;
+        background: rgba(11,138,199,0.09);
+        color: var(--primary-dark);
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+
+      .cart-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 20px;
+      }
+
+      .cart-empty {
+        color: var(--muted);
+        text-align: center;
+        padding: 30px 16px;
+        line-height: 1.9;
+      }
+
+      .cart-item {
+        display: grid;
+        gap: 14px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cart-item-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .cart-item h4 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--dark);
+      }
+
+      .cart-item .price-tag {
+        font-weight: 800;
+        color: var(--primary-dark);
+      }
+
+      .cart-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .cart-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .mini-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(11,138,199,0.08);
+        color: var(--primary-dark);
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .cart-remove {
+        border: none;
+        background: transparent;
+        color: #d94d5c;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .cart-footer {
+        border-top: 1px solid var(--line);
+        padding: 18px 20px 20px;
+      }
+
+      .total-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 16px;
+      }
+
+      .continue-order {
+        width: 100%;
+        border: none;
+        border-radius: 16px;
+        padding: 16px 18px;
+        background: linear-gradient(135deg, var(--primary), #59bdf5);
+        color: white;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      @media (max-width: 980px) {
+        .nav-links {
+          position: absolute;
+          top: 84px;
+          right: 16px;
+          left: 16px;
+          background: rgba(255,255,255,0.96);
+          box-shadow: var(--shadow);
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 18px 16px;
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: grid;
+          place-items: center;
+          width: 48px;
+          height: 48px;
+          border-radius: 12px;
+          border: 1px solid var(--line);
+          background: rgba(11,138,199,0.05);
+          color: var(--dark);
+          cursor: pointer;
+          font-size: 1.4rem;
+        }
+
+        .hero-box,
+        .featured-strip,
+        .order-shell,
+        .contact-grid,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-grid,
+        .products-grid,
+        .process-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .feature-grid,
+        .products-grid,
+        .process-grid,
+        .mini-cards,
+        .inquiry-form .field-row {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          padding: 12px 0;
+        }
+
+        .brand {
+          font-size: 1.3rem;
+        }
+
+        .brand-mark {
+          width: 40px;
+          height: 40px;
+        }
+
+        .cta-banner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container nav">
+        <div class="brand" aria-label="رواء للمياه">
+          <div class="brand-mark">💧</div>
+          <span> مصنع رواء تعز للمياه </span>
+        </div>
+
+        <nav class="nav-links" id="navLinks" aria-label="التنقل">
+          <a href="#home">الرئيسية</a>
+          <a href="#products">المنتجات</a>
+          <a href="#order">اطلب الآن</a>
+          <a href="#faq">الأسئلة الشائعة</a>
+          <a href="#testimonials">تقييمات العملاء</a>
+          <a href="#contact">تواصل معنا</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="btn btn-secondary" type="button">تصفح المنتجات</button>
+          <button class="cart-button" id="cartToggle" aria-label="فتح السلة">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+          <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+        </div>
+      </div>
+    </div>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container hero-box">
+          <div>
+            <div class="eyebrow">💧 جودة ونقاء</div>
+            <h1>رواء... نقاء يروي عطشك 💧</h1>
+            <p class="hero-text">
+              مياه نقية ومشروبات منعشة بجودة عالية، نوصّلها إليك بسهولة أينما كنت.
+            </p>
+            <div class="hero-actions">
+              <a href="#order" class="btn btn-primary">اطلب الآن</a>
+              <a href="#products" class="btn btn-secondary">تصفح المنتجات</a>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <strong>4.9</strong>
+                <span>تقييم العملاء</span>
+              </div>
+              <div class="stat">
+                <strong>24/7</strong>
+                <span>توصيل سريع</span>
+              </div>
+              <div class="stat">
+                <strong>1,200+</strong>
+                <span>طلب تم بنجاح</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="product-showcase">
+              <div class="drop one"></div>
+              <div class="drop two"></div>
+              <div class="drop three"></div>
+              <div class="water-bottle">
+                <div class="water-label">
+                  <strong>رواء</strong>
+                  <span>مياه نقية</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="why-section">
+        <div class="container">
+          <h2 class="section-title">لماذا تختار رواء؟</h2>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-icon">💧</div>
+              <h3>نقاء وجودة</h3>
+              <p>نهتم بجودة المياه ونحرص على تقديم منتجات تلبي توقعات عملائنا.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">🚚</div>
+              <h3>توصيل مريح</h3>
+              <p>اطلب احتياجاتك بسهولة وسنساعدك في إيصالها إلى موقعك.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>طلب سريع</h3>
+              <p>اختر الكمية وأدخل موقعك وأرسل طلبك مباشرة عبر واتساب.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">🤝</div>
+              <h3>ثقة وخدمة</h3>
+              <p>نسعى لتقديم تجربة سهلة وخدمة تلبي احتياجات عملائنا.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="products-section" id="products">
+        <div class="container">
+          <h2 class="section-title">منتجاتنا</h2>
+          <p class="section-subtitle">
+            اختر من منتجات رواء ما يناسب احتياجاتك، وحدد الكمية المطلوبة وأضفها إلى السلة.
+          </p>
+
+          <div class="products-grid" id="productGrid"></div>
+
+          <div class="featured-strip">
+            <div class="featured-card">
+              <div>
+                <h3>انتعاشك يبدأ من رواء</h3>
+                <p>مياه معدنية، عصائر، ومشروبات طبيعية تناسب كل لحظة من يومك.</p>
+              </div>
+              <a href="#order" class="btn btn-primary">اكتشف جميع المنتجات</a>
+            </div>
+            <div class="mini-cards">
+              <div class="mini-card">
+                <strong>💧</strong>
+                <span>مياه معدنية</span>
+              </div>
+              <div class="mini-card">
+                <strong>🧃</strong>
+                <span>عصائر</span>
+              </div>
+              <div class="mini-card">
+                <strong>🍃</strong>
+                <span>طبيعية</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="order-section" id="order">
+        <div class="container">
+          <h2 class="section-title">أكمل بيانات طلبك</h2>
+          <div class="order-shell">
+            <div class="order-box">
+              <div class="checkout-form">
+                <div class="field">
+                  <label>عدد الكراتين</label>
+                  <div class="quantity-box" style="width: fit-content;">
+                    <button class="qty-btn" type="button" data-change="minus" data-target="orderQty">−</button>
+                    <span class="qty-value" id="orderQty">1</span>
+                    <button class="qty-btn" type="button" data-change="plus" data-target="orderQty">+</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>موقع التوصيل</label>
+                  <div class="location-row">
+                    <input id="deliveryAddress" type="text" placeholder="أدخل عنوانك أو موقع التوصيل بالتفصيل" />
+                    <button type="button" class="ghost-btn" id="locateBtn">📍 تحديد موقعي</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="summary-box">
+              <h3 style="margin-top: 0; color: var(--dark);">ملخص الطلب</h3>
+              <div class="summary-list" id="summaryList"></div>
+              <div class="summary-total">
+                <span>الإجمالي</span>
+                <span id="summaryTotal">0 ريال</span>
+              </div>
+              <button type="button" class="wa-button" id="sendWhatsAppBtn">
+                📱 إرسال الطلب عبر واتساب
+              </button>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="process-section">
+        <div class="container">
+          <h2 class="section-title">طريقة الطلب</h2>
+          <div class="process-grid">
+            <article class="step-card">
+              <div class="step-number">01</div>
+              <h3>اختر منتجاتك</h3>
+              <p>اختر المنتج والكمية التي تحتاجها.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-number">02</div>
+              <h3>أدخل موقعك</h3>
+              <p>اكتب عنوان التوصيل أو حدد موقعك.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-number">03</div>
+              <h3>أرسل الطلب</h3>
+              <p>اضغط على زر واتساب وأرسل طلبك مباشرة إلى المصنع.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="review-section" id="testimonials">
+        <div class="container">
+          <h2 class="section-title">تقييمات العملاء</h2>
+          <p class="section-subtitle">
+            نحرص على جودة الخدمة والانتظار السريع، وتقييمات العملاء تعكس ثقتهم بنا منذ البداية.
+          </p>
+
+          <div class="review-summary">
+            <div class="review-score">
+              <div class="score-box">4.9</div>
+              <div class="score-text">
+                <h3>تقييم ممتاز</h3>
+                <div class="stars">★★★★★</div>
+                <span>من أكثر من 1200 تقييم</span>
+              </div>
+            </div>
+            <a class="btn-google" href="https://www.google.com/search?q=%D9%85%D8%B5%D9%86%D8%A7%D9%86+%D8%B1%D9%88%D8%A7%D8%A1+%D8%AA%D8%B9%D8%B2+%D8%A7%D9%84%D9%85%D9%85%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9+%D9%88%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%A8%D8%A7%D8%AA" target="_blank" rel="noreferrer">أضف تقييمك على Google</a>
+          </div>
+
+          <div class="review-grid">
+            <article class="review-card">
+              <div class="review-top">
+                <div class="review-user">
+                  <div class="avatar">م</div>
+                  <h4>محمد</h4>
+                </div>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>طلبنا للمكتب ولبثت الخدمة سريعة جدًا، والمياه ممتازة والرد سريع من الشركة.</p>
+            </article>
+
+            <article class="review-card">
+              <div class="review-top">
+                <div class="review-user">
+                  <div class="avatar">أ</div>
+                  <h4>أحمد</h4>
+                </div>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>تجربة ممتازة، التوصيل في الوقت المحدد، والمنتج عالي الجودة. أنصح بالتعامل معهم.</p>
+            </article>
+
+            <article class="review-card">
+              <div class="review-top">
+                <div class="review-user">
+                  <div class="avatar">س</div>
+                  <h4>سارة</h4>
+                </div>
+                <div class="stars">★★★★★</div>
+              </div>
+              <p>خدمة رائعة جدًا، خاصة في الطلبات المتكررة، وسهلة وواضحة جدًا مع التواصل عبر واتساب.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section" id="faq">
+        <div class="container">
+          <h2 class="section-title">الأسئلة الشائعة</h2>
+          <div class="faq-wrap">
+            <div class="faq-item open">
+              <button class="faq-question" type="button">
+                <span>هل يوجد توصيل داخل المدينة؟</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                نعم، نوفر خدمة التوصيل داخل المدينة وداخل المناطق القريبة وفق وقت التوصيل المتاح، مع متابعة الطلب مباشرة عبر واتساب.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>كيف يمكنني تقديم الطلب؟</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                اختر المنتج والكمية، ثم اكتب عنوان التوصيل واضغط على إرسال الطلب عبر واتساب وسيتم التواصل معك مباشرة.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>هل توجد أسعار خاصة للطلبات الكبيرة؟</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                نعم، نقدم أسعار مميزة للطلبات الكبيرة للشركات، المطاعم، المناسبات، والمشاريع، ويمكنك التواصل معنا مباشرة للحصول على العرض المناسب.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" type="button">
+                <span>هل يمكن طلب المنتج في أكثر من نوع؟</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                نعم، يمكنك إضافة أكثر من منتج في السلة في نفس الوقت، وتحديد الكمية المطلوبة لكل منتج قبل إرسال الطلب.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="container">
+          <h2 class="section-title">تواصل معنا</h2>
+          <div class="contact-grid">
+            <div class="info-box">
+              <h3>هل لديك استفسار أو طلب خاص؟</h3>
+              <p>فريق رواء للمياه جاهز لخدمتك.</p>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  <div class="icon">📞</div>
+                  <div>
+                <strong>الهاتف:</strong>
+<a href="tel:777222356">777222356</a>
+
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <div class="icon">📱</div>
+                  <div>
+  <strong>واتساب:</strong>
+  <a href="https://wa.me/777222359" target="_blank">777222359</a>
+</div>
+
+                </div>
+                <div class="contact-item">
+                  <div class="icon">✉️</div>
+                <div>
+  <strong>البريد الإلكتروني:</strong>
+  <a href="mailto:info@rawa-water.com">info@rawa-water.com</a>
+</div>
+
+                </div>
+                <div class="contact-item">
+                  <div class="icon">📍</div>
+                  <div>
+                    <strong>العنوان</strong>
+                    <span>تعز - اليمن</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-box">
+              <iframe
+                src="https://www.google.com/maps?q=Riyadh%20Saudi%20Arabia&z=12&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="خريطة مصنع رواء للمياه"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="inquiry-box" style="margin-top: 28px;">
+            <h3>لديك استفسار؟</h3>
+            <form class="inquiry-form">
+              <div class="field-row">
+                <div class="field">
+                  <label>الاسم</label>
+                  <input type="text" placeholder="اكتب اسمك" />
+                </div>
+                <div class="field">
+                  <label>رقم الهاتف</label>
+                  <input type="tel" placeholder="رقم الهاتف" />
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>نوع الطلب</label>
+                  <input type="text" placeholder="مثال: طلب جديد - استفسار" />
+                </div>
+                <div class="field">
+                  <label>رسالة</label>
+                  <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary">إرسال الاستفسار</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-banner">
+            <div>
+              <h3>عطشك له حل 💧</h3>
+              <p>مياه نقية ومشروبات منعشة تصل إليك بسهولة.</p>
+            </div>
+            <div class="cta-actions">
+              <a href="#order" class="btn btn-primary" style="background: white; color: var(--primary-dark);">اطلب الآن</a>
+              <a href="#products" class="btn btn-secondary" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white;">تصفح المنتجات</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">
+              <div class="brand-mark">💧</div>
+              <span>رواء للمياه</span>
+            </div>
+            <p class="footer-copy">مياه نقية... جودة تثق بها.</p>
+          </div>
+
+          <div>
+            <h4 class="footer-title">روابط سريعة</h4>
+            <div class="footer-links">
+              <a href="#home">الرئيسية</a>
+              <a href="#products">المنتجات</a>
+              <a href="#order">الطلب</a>
+              <a href="#contact">تواصل معنا</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">تواصل معنا</h4>
+            <div class="footer-links">
+              <a href="tel:+967777222356">الهاتف</a>
+              <a href="https://wa.me/967777222359" target="_blank" rel="noreferrer">واتساب</a>
+              <a href="mailto:info@rawa-water.com">البريد الإلكتروني</a>
+              <a href="https://maps.google.com/?q=Taiz+Yemen" target="_blank" rel="noreferrer">العنوان</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">وسائل التواصل</h4>
+            <div class="socials">
+              <a href="https://wa.me/967777222359" target="_blank" rel="noreferrer" aria-label="واتساب">💬</a>
+              <a href="#" aria-label="فيسبوك">f</a>
+              <a href="#" aria-label="إنستغرام">◎</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">© 2026 رواء للمياه — جميع الحقوق محفوظة</div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/967777222359" class="floating-wa" aria-label="واتساب" target="_blank" rel="noreferrer">💬</a>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="سلة الطلبات">
+      <div class="cart-header">
+        <h3>سلة الطلبات</h3>
+        <button class="close-cart" id="closeCart" aria-label="إغلاق السلة">×</button>
+      </div>
+      <div class="cart-body" id="cartItems"></div>
+      <div class="cart-footer">
+        <div class="total-line">
+          <span>إجمالي الطلب</span>
+          <span id="cartTotal">0 ريال</span>
+        </div>
+        <button class="continue-order" type="button" id="continueOrderBtn">متابعة الطلب</button>
+      </div>
+    </aside>
+
+    <div class="toast" id="toast">✅ تمت إضافة المنتج إلى السلة</div>
+
+    <script>
+      const products = [
+        {
+          id: 1,
+          name: "مياه رواء",
+          description: "مياه معدنية نقية ومنعشة مناسبة للمنزل والمكتب والمناسبات.",
+          price: 3500,
+          category: "مياه",
+          image: "./img/water.jpg"      
+          },
+
+      ];
+
+      let cart = [];
+
+      function formatPrice(value) {
+        return `${Number(value).toLocaleString("en-US")} ريال`;
+      }
+
+      function getProductById(id) {
+        return products.find((product) => product.id === Number(id));
+      }
+
+      function renderProducts() {
+        const grid = document.getElementById("productGrid");
+        grid.innerHTML = products.map((product) => `
+          <article class="product-card">
+            <div class="product-image" style="background-image: url('${product.image}')"></div>
+            <div class="product-body">
+              <div class="product-header">
+                <h3 class="product-name">${product.name}</h3>
+                <span class="product-pill">${product.category}</span>
+              </div>
+              <p class="product-desc">${product.description}</p>
+              <div class="product-meta">
+                <div class="price-block">
+                  <div class="price">${formatPrice(product.price)}</div>
+                  <div class="product-total" data-total-id="${product.id}">الإجمالي: ${formatPrice(product.price)}</div>
+                </div>
+
+                <div class="quantity-box" data-product-id="${product.id}">
+                  <button class="qty-btn" type="button" data-change="minus" data-id="${product.id}">−</button>
+                  <span class="qty-value" data-qty-id="${product.id}">1</span>
+                  <button class="qty-btn" type="button" data-change="plus" data-id="${product.id}">+</button>
+                </div>
+              </div>
+              <button class="add-btn" type="button" data-add-id="${product.id}">أضف إلى السلة 🛒</button>
+            </div>
+          </article>
+        `).join("");
+        refreshProductTotals();
+      }
+
+      function refreshProductTotals() {
+        products.forEach((product) => {
+          const qtyEl = document.querySelector(`[data-qty-id="${product.id}"]`);
+          const totalEl = document.querySelector(`[data-total-id="${product.id}"]`);
+          if (!qtyEl || !totalEl) return;
+          const qty = Number(qtyEl.textContent || 1);
+          totalEl.textContent = `الإجمالي: ${formatPrice(product.price * qty)}`;
+        });
+      }
+
+      function getItemQty(productId) {
+        const item = document.querySelector(`[data-qty-id="${productId}"]`);
+        return Number(item?.textContent || 1);
+      }
+
+      function setQty(productId, amount) {
+        const qtyEl = document.querySelector(`[data-qty-id="${productId}"]`);
+        if (!qtyEl) return;
+        const nextValue = Math.max(1, Number(qtyEl.textContent || 1) + amount);
+        qtyEl.textContent = nextValue;
+      }
+
+      function addToCart(productId, qty = 1) {
+        const product = getProductById(productId);
+        if (!product) return;
+
+        const existing = cart.find((item) => item.id === productId);
+        if (existing) {
+          existing.qty += qty;
+        } else {
+          cart.push({ id: productId, qty });
+        }
+
+        updateCartUI();
+        showToast("✅ تمت إضافة المنتج إلى السلة");
+      }
+
+      function removeFromCart(productId) {
+        cart = cart.filter((item) => item.id !== productId);
+        updateCartUI();
+      }
+
+      function changeCartQty(productId, delta) {
+        const item = cart.find((entry) => entry.id === productId);
+        if (!item) return;
+        item.qty += delta;
+        if (item.qty <= 0) removeFromCart(productId);
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        const cartItems = document.getElementById("cartItems");
+        const cartCount = document.getElementById("cartCount");
+        const cartTotal = document.getElementById("cartTotal");
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+
+        cartCount.textContent = totalItems;
+
+        if (!cart.length) {
+          cartItems.innerHTML = '<div class="cart-empty">سلة الطلبات فارغة الآن. ابدأ باختيار منتجاتك.</div>';
+          cartTotal.textContent = "0 ريال";
+          document.getElementById("summaryList").innerHTML = '<div class="cart-empty">لا توجد منتجات في السلة حاليًا.</div>';
+          document.getElementById("summaryTotal").textContent = "0 ريال";
+          return;
+        }
+
+        const totalPrice = cart.reduce((sum, item) => {
+          const product = getProductById(item.id);
+          return sum + (product ? product.price * item.qty : 0);
+        }, 0);
+
+        cartTotal.textContent = formatPrice(totalPrice);
+
+        cartItems.innerHTML = cart.map((item) => {
+          const product = getProductById(item.id);
+          if (!product) return "";
+          return `
+            <div class="cart-item">
+              <div class="cart-item-top">
+                <h4>${product.name}</h4>
+                <div class="price-tag">${formatPrice(product.price)}</div>
+              </div>
+              <div class="cart-controls">
+                <div class="cart-actions">
+                  <button class="mini-btn" type="button" data-cart-minus="${product.id}">−</button>
+                  <span>${item.qty}</span>
+                  <button class="mini-btn" type="button" data-cart-plus="${product.id}">+</button>
+                </div>
+                <button class="cart-remove" type="button" data-cart-remove="${product.id}">حذف</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        renderSummary();
+      }
+
+      function renderSummary() {
+        const listEl = document.getElementById("summaryList");
+        const totalEl = document.getElementById("summaryTotal");
+
+        if (!cart.length) {
+          listEl.innerHTML = '<div class="cart-empty">لا توجد منتجات في السلة حاليًا.</div>';
+          totalEl.textContent = '0 ريال';
+          return;
+        }
+
+        let total = 0;
+        listEl.innerHTML = cart.map((item) => {
+          const product = getProductById(item.id);
+          if (!product) return "";
+          const subtotal = product.price * item.qty;
+          total += subtotal;
+          return `
+            <div class="summary-item">
+              <div>
+                <strong>${product.name}</strong>
+                <span>الكمية: ${item.qty}</span>
+              </div>
+              <span>${formatPrice(subtotal)}</span>
+            </div>
+          `;
+        }).join("");
+
+        totalEl.textContent = formatPrice(total);
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(window.toastTimer);
+        window.toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+      }
+
+      function goToOrder() {
+        if (!cart.length) {
+          showToast("❗ أضف منتجًا إلى السلة أولاً");
+          return;
+        }
+        document.getElementById("order").scrollIntoView({ behavior: "smooth" });
+      }
+
+      function getWhatsAppMessage() {
+        const address = document.getElementById("deliveryAddress").value.trim() || "غير محدد";
+        const total = cart.reduce((sum, item) => {
+          const product = getProductById(item.id);
+          return sum + (product ? product.price * item.qty : 0);
+        }, 0);
+        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+
+        const productText = cart.map((item) => {
+          const product = getProductById(item.id);
+          return `- ${product?.name || "منتج"}: ${item.qty} كرتون`;
+        }).join("\n");
+
+        return encodeURIComponent(
+          `السلام عليكم، أرغب في طلب من رواء للمياه:\n\n` +
+          `💧 المنتجات:\n${productText}\n\n` +
+          `📦 عدد الكراتين: ${totalQty}\n` +
+          `💰 السعر الإجمالي: ${formatPrice(total).replace(" ريال", " ريال")}\n` +
+          `📍 موقع التوصيل: ${address}\n\n` +
+          `شكرًا لكم.`
+        );
+      }
+
+      function sendWhatsAppOrder() {
+        if (!cart.length) {
+          showToast("❗ لا توجد منتجات في السلة");
+          return;
+        }
+        const message = getWhatsAppMessage();
+        window.open(`https://wa.me/967777222359?text=${message}`, "_blank");
+      }
+
+      document.addEventListener("click", (event) => {
+        const addButton = event.target.closest("[data-add-id]");
+        if (addButton) {
+          const productId = Number(addButton.dataset.addId);
+          const qtyEl = document.querySelector(`[data-qty-id="${productId}"]`);
+          const quantity = Number(qtyEl?.textContent || 1);
+          addToCart(productId, quantity);
+          qtyEl.textContent = 1;
+        }
+
+        const plusButton = event.target.closest("[data-change='plus']");
+        if (plusButton) {
+          const productId = plusButton.dataset.id || "";
+          if (productId) {
+            setQty(Number(productId), 1);
+            refreshProductTotals();
+          }
+          const target = plusButton.dataset.target;
+          if (target === "orderQty") {
+            const qtyEl = document.getElementById("orderQty");
+            qtyEl.textContent = Math.max(1, Number(qtyEl.textContent) + 1);
+          }
+        }
+
+        const minusButton = event.target.closest("[data-change='minus']");
+        if (minusButton) {
+          const productId = minusButton.dataset.id || "";
+          if (productId) {
+            const qtyEl = document.querySelector(`[data-qty-id="${productId}"]`);
+            if (qtyEl) {
+              const nextValue = Math.max(1, Number(qtyEl.textContent || 1) - 1);
+              qtyEl.textContent = nextValue;
+              refreshProductTotals();
+            }
+          }
+          const target = minusButton.dataset.target;
+          if (target === "orderQty") {
+            const qtyEl = document.getElementById("orderQty");
+            qtyEl.textContent = Math.max(1, Number(qtyEl.textContent) - 1);
+          }
+        }
+
+        const cartPlus = event.target.closest("[data-cart-plus]");
+        if (cartPlus) {
+          changeCartQty(Number(cartPlus.dataset.cartPlus), 1);
+        }
+
+        const cartMinus = event.target.closest("[data-cart-minus]");
+        if (cartMinus) {
+          changeCartQty(Number(cartMinus.dataset.cartMinus), -1);
+        }
+
+        const cartRemove = event.target.closest("[data-cart-remove]");
+        if (cartRemove) {
+          removeFromCart(Number(cartRemove.dataset.cartRemove));
+        }
+
+        if (event.target.closest("#cartToggle")) {
+          document.getElementById("cartPanel").classList.add("open");
+        }
+
+        if (event.target.closest("#closeCart")) {
+          document.getElementById("cartPanel").classList.remove("open");
+        }
+
+        if (event.target.closest("#continueOrderBtn")) {
+          document.getElementById("cartPanel").classList.remove("open");
+          goToOrder();
+        }
+
+        if (event.target.closest("#sendWhatsAppBtn")) {
+          sendWhatsAppOrder();
+        }
+
+        if (event.target.closest("#menuToggle")) {
+          document.getElementById("navLinks").classList.toggle("open");
+        }
+      });
+
+      document.querySelectorAll(".faq-question").forEach((button) => {
+        button.addEventListener("click", () => {
+          const item = button.closest(".faq-item");
+          item.classList.toggle("open");
+        });
+      });
+
+      document.getElementById("locateBtn").addEventListener("click", () => {
+        if (!navigator.geolocation) {
+          showToast("❗ خدمة الموقع غير مدعومة في هذا المتصفح");
+          return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            document.getElementById("deliveryAddress").value = `الإحداثيات الحالية: ${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+            showToast("✅ تم تحديد موقعك بنجاح");
+          },
+          () => {
+            showToast("❗ تعذر تحديد الموقع، الرجاء إدخال العنوان يدويًا");
+          }
+        );
+      });
+
+      renderProducts();
+      updateCartUI();
+    </script>
+  </body>
+</html>
