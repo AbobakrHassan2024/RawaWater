@@ -3,17 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>رواء للمياه</title>
-    <meta
-      name="description"
-      content="رواء للمياه - متجر إلكتروني لطلب المياه والمشروبات، مع إمكانية إرسال الطلب مباشرة عبر واتساب."
-    />
+    <title>رواء للمياه | مياه نقية ومشروبات منعشة</title>
+    <meta name="description" content="رواء للمياه - متجر إلكتروني لطلب المياه والمشروبات في تعز، مع إمكانية إرسال الطلب مباشرة عبر واتساب." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
       :root {
         --primary: #0b8ac7;
@@ -31,18 +25,8 @@
         --whatsapp: #25d366;
         --whatsapp-dark: #128C7E;
       }
-
-      * { box-sizing: border-box; }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      section[id],
-      [id] {
-        scroll-margin-top: 110px;
-      }
-
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
       body {
         margin: 0;
         font-family: "Cairo", sans-serif;
@@ -50,55 +34,16 @@
         color: var(--text);
         overflow-x: hidden;
       }
-
-      img {
-        max-width: 100%;
-        display: block;
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-
-      button, input, textarea {
-        font: inherit;
-      }
-
-      .container {
-        width: min(1180px, calc(100% - 32px));
-        margin: 0 auto;
-      }
-
+      img { max-width: 100%; display: block; }
+      a { text-decoration: none; color: inherit; }
+      button, input, textarea { font: inherit; }
+      .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
       .section-title {
         margin: 0 0 18px;
         font-size: clamp(1.8rem, 3vw, 2.6rem);
         color: var(--dark);
         text-align: center;
       }
-
-      .mobile-section-title {
-        cursor: pointer;
-        user-select: none;
-      }
-
-      .mobile-section-title::after {
-        content: "＋";
-        display: inline-block;
-        margin-inline-start: 10px;
-        font-size: 1.2rem;
-        color: var(--primary-dark);
-        transition: transform 0.2s ease;
-      }
-
-      .mobile-section-title.open::after {
-        content: "−";
-      }
-
-      .mobile-section-content {
-        display: block;
-      }
-
       .section-subtitle {
         text-align: center;
         color: var(--muted);
@@ -107,16 +52,28 @@
         line-height: 1.9;
         font-size: clamp(1rem, 1.8vw, 1.2rem);
       }
-
+      /* ===== SECTIONS SHOW/HIDE ===== */
+      main > section {
+        display: none;
+        animation: sectionFadeIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      main > section.active {
+        display: block;
+      }
+      @keyframes sectionFadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      /* ===== TOPBAR ===== */
       .topbar {
         position: sticky;
         top: 0;
         z-index: 60;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         border-bottom: 1px solid rgba(11, 138, 199, 0.08);
       }
-
       .nav {
         position: relative;
         display: flex;
@@ -125,7 +82,6 @@
         gap: 16px;
         padding: 16px 0;
       }
-
       .brand {
         display: inline-flex;
         align-items: center;
@@ -134,7 +90,6 @@
         color: var(--dark);
         font-size: 1.6rem;
       }
-
       .brand-mark {
         width: 46px;
         height: 46px;
@@ -145,8 +100,8 @@
         color: white;
         box-shadow: var(--shadow);
         font-size: 1.2rem;
+        flex-shrink: 0;
       }
-
       .nav-links {
         display: flex;
         align-items: center;
@@ -154,35 +109,33 @@
         font-weight: 600;
         color: var(--dark);
       }
-
       .nav-links a {
         position: relative;
         opacity: 0.9;
+        transition: opacity 0.2s, color 0.2s;
+        cursor: pointer;
+        padding: 6px 4px;
       }
-
       .nav-links a::after {
         content: "";
         position: absolute;
         inset-inline: 0;
-        bottom: -8px;
+        bottom: -6px;
         height: 2px;
         background: var(--primary);
         transform: scaleX(0);
         transform-origin: center;
         transition: 0.25s ease;
       }
-
       .nav-links a:hover::after,
-      .nav-links a:focus-visible::after {
-        transform: scaleX(1);
-      }
-
+      .nav-links a.active::after { transform: scaleX(1); }
+      .nav-links a:hover,
+      .nav-links a.active { opacity: 1; color: var(--primary-dark); }
       .nav-actions {
         display: flex;
         align-items: center;
         gap: 14px;
       }
-
       .btn {
         border: none;
         border-radius: 999px;
@@ -190,23 +143,21 @@
         font-weight: 700;
         cursor: pointer;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
       }
-
-      .btn:hover {
-        transform: translateY(-2px);
-      }
-
+      .btn:hover { transform: translateY(-2px); }
       .btn-primary {
         background: linear-gradient(135deg, var(--primary), #5bbcf6);
         color: white;
         box-shadow: 0 14px 28px rgba(11, 138, 199, 0.22);
       }
-
       .btn-secondary {
         background: rgba(11, 138, 199, 0.08);
         color: var(--primary-dark);
       }
-
       .cart-button {
         position: relative;
         display: flex;
@@ -218,20 +169,17 @@
         background: rgba(11, 138, 199, 0.08);
         border: 1px solid rgba(11, 138, 199, 0.15);
         color: var(--primary-dark);
-        font-size: 1.5rem;
         cursor: pointer;
-        transition: background 0.2s, transform 0.2s;
+        transition: transform 0.2s, background 0.2s;
       }
-
       .cart-button:hover {
         background: rgba(11, 138, 199, 0.16);
         transform: scale(1.05);
       }
-
       .cart-count {
         position: absolute;
         top: -6px;
-        left: -4px;
+        right: -4px;
         min-width: 22px;
         height: 22px;
         border-radius: 50%;
@@ -242,16 +190,13 @@
         font-size: 0.72rem;
         font-weight: 800;
         border: 2px solid white;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
+      .cart-count.bounce { transform: scale(1.4); }
+      .menu-toggle { display: none; }
 
-      .menu-toggle {
-        display: none;
-      }
-
-      .hero {
-        padding: 48px 0 30px;
-      }
-
+      /* ===== HERO ===== */
+      .hero { padding: 48px 0 30px; }
       .hero-box {
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
@@ -265,29 +210,15 @@
         position: relative;
         overflow: hidden;
       }
-
-      .hero-box::before,
-      .hero-box::after {
+      .hero-box::before, .hero-box::after {
         content: "";
         position: absolute;
         background: radial-gradient(circle, rgba(76, 196, 255, 0.3), transparent 70%);
         border-radius: 50%;
+        pointer-events: none;
       }
-
-      .hero-box::before {
-        width: 420px;
-        height: 420px;
-        left: -120px;
-        bottom: -150px;
-      }
-
-      .hero-box::after {
-        width: 280px;
-        height: 280px;
-        right: -50px;
-        top: -80px;
-      }
-
+      .hero-box::before { width: 420px; height: 420px; right: -120px; bottom: -150px; }
+      .hero-box::after { width: 280px; height: 280px; left: -50px; top: -80px; }
       .eyebrow {
         display: inline-flex;
         align-items: center;
@@ -301,34 +232,10 @@
         font-weight: 700;
         margin-bottom: 18px;
       }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(2.4rem, 4vw, 4.5rem);
-        line-height: 1.2;
-        color: var(--dark);
-      }
-
-      .hero-text {
-        color: var(--muted);
-        font-size: clamp(1rem, 1.5vw, 1.15rem);
-        line-height: 1.9;
-        margin: 18px 0 24px;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-bottom: 22px;
-      }
-
-      .stats {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 18px;
-      }
-
+      h1 { margin: 0; font-size: clamp(2.4rem, 4vw, 4.5rem); line-height: 1.2; color: var(--dark); }
+      .hero-text { color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.15rem); line-height: 1.9; margin: 18px 0 24px; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 22px; }
+      .stats { display: flex; flex-wrap: wrap; gap: 18px; }
       .stat {
         min-width: 140px;
         padding: 14px 18px;
@@ -337,46 +244,28 @@
         border: 1px solid var(--line);
         backdrop-filter: blur(4px);
       }
-
-      .stat strong {
-        display: block;
-        font-size: 1.6rem;
-        color: var(--primary-dark);
-      }
-
-      .stat span {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
+      .stat strong { display: block; font-size: 1.6rem; color: var(--primary-dark); }
+      .stat span { color: var(--muted); font-size: 0.9rem; }
       .hero-image {
-        min-height: 200px;
+        width: 100%;
+        min-height: 320px;
+        max-height: 420px;
         border-radius: 20px;
-        background: url('Transport steamer.jpeg') center/cover no-repeat;
+        object-fit: cover;
+        object-position: center;
         background-color: #d1ebff;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         transition: transform 0.3s ease;
+        position: relative;
+        z-index: 1;
+        display: block;
       }
-
-      .hero-image:hover {
-        transform: scale(1.02);
+      .hero-image:hover { transform: scale(1.02); }
+      @media (max-width: 640px) {
+        .hero-image { min-height: 200px; max-height: 280px; }
       }
-
-      .why-section,
-      .products-section,
-      .order-section,
-      .process-section,
-      .contact-section,
-      .cta-section {
-        padding: 80px 0;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 20px;
-      }
-
+      .why-section, .products-section, .process-section, .contact-section, .cta-section, .review-section, .faq-section { padding: 80px 0; }
+      .feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
       .feature-card {
         background: white;
         border-radius: var(--radius);
@@ -384,862 +273,161 @@
         border: 1px solid var(--line);
         box-shadow: 0 12px 28px rgba(17, 95, 134, 0.04);
         text-align: center;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
-
-      .feature-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(17, 95, 134, 0.08);
-      }
-
+      .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(17, 95, 134, 0.08); }
       .feature-icon {
-        width: 72px;
-        height: 72px;
-        border-radius: 20px;
-        margin: 0 auto 18px;
-        display: grid;
-        place-items: center;
+        width: 72px; height: 72px; border-radius: 20px; margin: 0 auto 18px;
+        display: grid; place-items: center;
         background: linear-gradient(135deg, rgba(11,138,199,0.1), rgba(19,183,166,0.13));
         font-size: 2rem;
         transition: transform 0.3s, box-shadow 0.3s;
       }
-
-      .feature-card:hover .feature-icon {
-        transform: scale(1.08);
-        box-shadow: 0 8px 20px rgba(11, 138, 199, 0.15);
-      }
-
-      .feature-card h3 {
-        margin: 0 0 10px;
-        font-size: 1.3rem;
-        color: var(--dark);
-      }
-
-      .feature-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.8;
-        font-size: clamp(0.9rem, 1.2vw, 1rem);
-      }
-
-      .products-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 24px;
-      }
-
+      .feature-card:hover .feature-icon { transform: scale(1.08); box-shadow: 0 8px 20px rgba(11, 138, 199, 0.15); }
+      .feature-card h3 { margin: 0 0 10px; font-size: 1.3rem; color: var(--dark); }
+      .feature-card p { margin: 0; color: var(--muted); line-height: 1.8; font-size: clamp(0.9rem, 1.2vw, 1rem); }
+      .products-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
       .product-card {
         background: white;
         border-radius: 24px;
         border: 1px solid var(--line);
         overflow: hidden;
         box-shadow: 0 12px 24px rgba(17,95,134,0.06);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
       }
-
-      .product-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 32px rgba(17,95,134,0.1);
-      }
-
+      .product-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(17,95,134,0.12); }
       .product-image {
-        height: 300px;
-        background: linear-gradient(135deg, rgba(11,138,199,0.08), rgba(19,183,166,0.08));
+        height: 240px;
         background-size: cover;
         background-position: center;
-        aspect-ratio: 1 / 1;
-      }
-
-      .product-body {
-        padding: 20px 18px 18px;
-      }
-
-      .product-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-
-      .product-meta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 18px;
-        flex-wrap: wrap;
-      }
-
-      .product-name {
-        margin: 0;
-        font-size: 1.5rem;
-        color: var(--dark);
-      }
-
-      .product-pill {
-        padding: 7px 12px;
-        border-radius: 999px;
-        background: var(--primary-soft);
-        color: var(--primary-dark);
-        font-weight: 700;
-        font-size: 0.75rem;
-      }
-
-      .product-desc {
-        margin: 0 0 16px;
-        color: var(--muted);
-        line-height: 1.8;
-        font-size: clamp(0.9rem, 1.2vw, 1rem);
-      }
-
-      .price {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: var(--primary-dark);
-      }
-
-      .price-block {
-        display: grid;
-        gap: 4px;
-      }
-
-      .product-total {
-        font-size: 0.78rem;
-        color: var(--muted);
-        font-weight: 700;
-      }
-
-      .quantity-box {
-        display: inline-flex;
-        align-items: center;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        background: #f8fbfd;
+        position: relative;
         overflow: hidden;
       }
-
-      .qty-btn {
-        width: 42px;
-        height: 42px;
-        border: none;
-        background: transparent;
-        color: var(--dark);
-        cursor: pointer;
-        font-size: 1.6rem;
-        font-weight: 700;
-        transition: background 0.2s;
+      .product-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.03), transparent 40%);
       }
-
-      .qty-btn:hover {
-        background: rgba(11, 138, 199, 0.08);
-      }
-
-      .qty-value {
-        min-width: 34px;
-        text-align: center;
-        font-weight: 700;
-        color: var(--dark);
-      }
-
+      .product-body { padding: 20px 18px 18px; flex: 1; display: flex; flex-direction: column; }
+      .product-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+      .product-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+      .product-name { margin: 0; font-size: 1.4rem; color: var(--dark); }
+      .product-pill { padding: 6px 12px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-dark); font-weight: 700; font-size: 0.75rem; flex-shrink: 0; }
+      .product-desc { margin: 0 0 16px; color: var(--muted); line-height: 1.8; font-size: clamp(0.9rem, 1.2vw, 1rem); flex: 1; }
+      .price { font-size: 1.5rem; font-weight: 800; color: var(--primary-dark); }
+      .price-block { display: grid; gap: 4px; }
+      .product-total { font-size: 0.78rem; color: var(--muted); font-weight: 700; }
+      .quantity-box { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; background: #f8fbfd; overflow: hidden; }
+      .qty-btn { width: 42px; height: 42px; border: none; background: transparent; color: var(--dark); cursor: pointer; font-size: 1.4rem; font-weight: 700; transition: background 0.2s; display: grid; place-items: center; }
+      .qty-btn:hover { background: rgba(11,138,199,0.08); }
+      .qty-value { min-width: 34px; text-align: center; font-weight: 700; color: var(--dark); font-size: 1rem; }
       .add-btn {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        border-radius: 14px;
-        padding: 14px 16px;
-        border: none;
+        width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+        border-radius: 14px; padding: 14px 16px; border: none;
         background: linear-gradient(135deg, var(--primary), #4abcf4);
-        color: white;
-        font-weight: 700;
-        cursor: pointer;
+        color: white; font-weight: 700; cursor: pointer;
         transition: transform 0.2s, box-shadow 0.2s;
+        margin-top: auto;
       }
+      .add-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(11, 138, 199, 0.3); }
+      .add-btn:active { transform: translateY(0); }
 
-      .add-btn:hover {
-        transform: scale(1.02);
-        box-shadow: 0 8px 20px rgba(11, 138, 199, 0.3);
+      /* Fly Animation */
+      .fly-image {
+        position: fixed;
+        z-index: 200;
+        border-radius: 12px;
+        object-fit: cover;
+        pointer-events: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       }
-
-      .featured-strip {
-        margin-top: 32px;
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 22px;
-        align-items: stretch;
-      }
-
+      .featured-strip { margin-top: 32px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 22px; align-items: stretch; }
       .featured-card {
         background: linear-gradient(135deg, rgba(11, 138, 199, 0.12), rgba(19, 183, 166, 0.12));
         border: 1px solid rgba(11, 138, 199, 0.12);
         border-radius: 28px;
         padding: clamp(22px, 4vw, 36px);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
+        display: flex; align-items: center; justify-content: space-between; gap: 18px;
         backdrop-filter: blur(4px);
       }
-
-      .featured-card h3 {
-        margin: 0 0 8px;
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
-        color: var(--dark);
-      }
-
-      .featured-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.8;
-      }
-
-      .mini-cards {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .mini-card {
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 18px 12px;
-        text-align: center;
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .mini-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(17, 95, 134, 0.06);
-      }
-
-      .mini-card strong {
-        display: block;
-        font-size: 1.8rem;
-        color: var(--dark);
-      }
-
-      .mini-card span {
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .order-shell {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 28px;
-      }
-
-      .order-box,
-      .summary-box {
-        background: white;
-        border-radius: 28px;
-        border: 1px solid var(--line);
-        box-shadow: 0 16px 28px rgba(17, 95, 134, 0.05);
-        padding: 26px;
-      }
-
-      .checkout-form {
-        display: grid;
-        gap: 18px;
-      }
-
-      .field {
-        display: grid;
-        gap: 10px;
-      }
-
-      .field label {
-        font-weight: 700;
-        color: var(--dark);
-      }
-
-      .field input,
-      .field textarea {
-        width: 100%;
-        border-radius: 14px;
-        border: 1px solid var(--line);
-        background: #f9fcff;
-        padding: 14px 16px;
-        color: var(--text);
-        transition: border 0.2s, box-shadow 0.2s;
-      }
-
-      .field input:focus,
-      .field textarea:focus {
-        border-color: var(--primary);
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(11, 138, 199, 0.1);
-      }
-
-      .field textarea {
-        min-height: 120px;
-        resize: vertical;
-        max-width: 100%;
-      }
-
-      .location-row {
-        display: flex;
-        gap: 12px;
-      }
-
-      .location-row input {
-        flex: 1;
-      }
-
-      .ghost-btn {
-        border: none;
-        border-radius: 14px;
-        background: rgba(11,138,199,.1);
-        color: var(--primary-dark);
-        font-weight: 700;
-        padding: 0 16px;
-        cursor: pointer;
-        transition: background 0.2s, transform 0.2s;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        white-space: nowrap;
-      }
-
-      .ghost-btn:hover {
-        background: rgba(11,138,199,.2);
-        transform: scale(1.03);
-      }
-
-      .summary-list {
-        display: grid;
-        gap: 12px;
-        margin-top: 12px;
-      }
-
-      .summary-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 14px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .summary-item strong {
-        color: var(--dark);
-      }
-
-      .summary-item span {
-        color: var(--muted);
-      }
-
-      .summary-total {
-        margin-top: 20px;
-        padding-top: 12px;
-        border-top: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 1.15rem;
-        font-weight: 800;
-        color: var(--dark);
-      }
-
-      .wa-button {
-        width: 100%;
-        margin-top: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 18px 18px;
-        border: none;
-        border-radius: 18px;
-        background: linear-gradient(135deg, #16bf73, #0ca954);
-        color: white;
-        font-size: 1.1rem;
-        font-weight: 800;
-        cursor: pointer;
-        box-shadow: 0 16px 30px rgba(22, 191, 115, 0.18);
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .wa-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 40px rgba(22, 191, 115, 0.25);
-      }
-
-      .process-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 24px;
-      }
-
-      .review-section,
-      .faq-section {
-        padding: 80px 0;
-      }
-
-      .review-summary {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        background: linear-gradient(135deg, rgba(11,138,199,0.1), rgba(19,183,166,0.12));
-        border: 1px solid rgba(11,138,199,0.12);
-        border-radius: 26px;
-        padding: 24px 28px;
-        margin-bottom: 28px;
-        backdrop-filter: blur(4px);
-      }
-
-      .review-score {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-      }
-
-      .score-box {
-        width: 94px;
-        height: 94px;
-        border-radius: 24px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--primary), #59bdf5);
-        color: white;
-        font-size: 1.9rem;
-        font-weight: 800;
-        box-shadow: 0 18px 28px rgba(11,138,199,0.2);
-      }
-
-      .score-text h3 {
-        margin: 0;
-        font-size: 2rem;
-        color: var(--dark);
-      }
-
-      .score-text span {
-        color: var(--muted);
-      }
-
-      .stars {
-        display: inline-flex;
-        gap: 4px;
-        color: #ffb400;
-        font-size: 1.1rem;
-        margin-top: 8px;
-      }
-
-      .btn-google {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        border-radius: 999px;
-        padding: 14px 20px;
-        background: rgba(255,255,255,0.8);
-        border: 1px solid rgba(11,138,199,0.12);
-        color: var(--primary-dark);
-        font-weight: 800;
-        transition: background 0.2s, transform 0.2s;
-      }
-
-      .btn-google:hover {
-        background: white;
-        transform: scale(1.02);
-      }
-
-      .review-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-      }
-
-      .review-card {
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        padding: 22px 20px;
-        box-shadow: 0 14px 24px rgba(17,95,134,0.04);
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .review-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(17,95,134,0.08);
-      }
-
-      .review-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        margin-bottom: 10px;
-      }
-
-      .review-user {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .avatar {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, rgba(11,138,199,0.12), rgba(19,183,166,0.12));
-        color: var(--primary-dark);
-        font-weight: 800;
-      }
-
-      .review-user h4 {
-        margin: 0;
-        color: var(--dark);
-        font-size: 1.1rem;
-      }
-
-      .review-card p {
-        margin: 12px 0 0;
-        color: var(--muted);
-        line-height: 1.9;
-        font-size: clamp(0.9rem, 1.2vw, 1rem);
-      }
-
-      .faq-wrap {
-        max-width: 980px;
-        margin: 0 auto;
-        display: grid;
-        gap: 16px;
-      }
-
-      .faq-item {
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        overflow: hidden;
-        box-shadow: 0 12px 24px rgba(17,95,134,0.03);
-        transition: box-shadow 0.2s;
-      }
-
-      .faq-item:hover {
-        box-shadow: 0 16px 32px rgba(17,95,134,0.06);
-      }
-
-      .faq-question {
-        width: 100%;
-        border: none;
-        background: transparent;
-        padding: 20px 22px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        font-size: 1.08rem;
-        color: var(--dark);
-        font-weight: 700;
-        text-align: right;
-        cursor: pointer;
-      }
-
-      .faq-icon {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: rgba(11,138,199,0.08);
-        color: var(--primary-dark);
-        font-weight: 900;
-        transition: transform 0.2s ease;
-      }
-
-      .faq-item.open .faq-icon {
-        transform: rotate(45deg);
-      }
-
-      .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
-        padding: 0 22px;
-        color: var(--muted);
-        line-height: 1.9;
-      }
-
-      .faq-item.open .faq-answer {
-        max-height: 200px;
-        padding: 0 22px 20px;
-      }
-
-      .step-card {
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        padding: 28px 24px;
-        box-shadow: 0 14px 24px rgba(17,95,134,0.04);
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .step-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(17,95,134,0.08);
-      }
-
-      .step-number {
-        width: 62px;
-        height: 62px;
-        display: grid;
-        place-items: center;
-        border-radius: 18px;
-        background: linear-gradient(135deg, rgba(11,138,199,.12), rgba(19,183,166,.12));
-        color: var(--primary-dark);
-        font-size: 1.4rem;
-        font-weight: 800;
-        margin-bottom: 18px;
-      }
-
-      .step-card h3 {
-        margin: 0 0 12px;
-        font-size: 1.5rem;
-        color: var(--dark);
-      }
-
-      .step-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.9;
-        font-size: clamp(0.9rem, 1.2vw, 1rem);
-      }
-
-      .contact-grid {
-        display: grid;
-        grid-template-columns: 0.9fr 1.1fr;
-        gap: 28px;
-      }
-
-      .info-box,
-      .map-box,
-      .inquiry-box {
-        background: white;
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        box-shadow: 0 16px 26px rgba(17,95,134,0.05);
-        transition: box-shadow 0.2s;
-      }
-
-      .info-box:hover,
-      .map-box:hover,
-      .inquiry-box:hover {
-        box-shadow: 0 20px 40px rgba(17,95,134,0.08);
-      }
-
-      .info-box {
-        padding: 28px;
-      }
-
-      .info-box h3,
-      .inquiry-box h3 {
-        margin: 0 0 12px;
-        font-size: 2rem;
-        color: var(--dark);
-      }
-
-      .info-box p {
-        margin: 0 0 20px;
-        color: var(--muted);
-        line-height: 1.9;
-      }
-
-      .contact-list {
-        display: grid;
-        gap: 18px;
-        margin-top: 24px;
-      }
-
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        padding: 12px 14px;
-        border-radius: 16px;
-        background: rgba(11,138,199,0.04);
-        transition: background 0.2s;
-      }
-
-      .contact-item:hover {
-        background: rgba(11,138,199,0.08);
-      }
-
-      .contact-item .icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, rgba(11,138,199,0.12), rgba(19,183,166,0.12));
-        font-size: 1.5rem;
-        transition: transform 0.2s;
-      }
-
-      .contact-item:hover .icon {
-        transform: scale(1.08);
-      }
-
-      .contact-item strong {
-        display: block;
-        color: var(--dark);
-      }
-
-      .map-box {
-        overflow: hidden;
-      }
-
-      .map-box iframe {
-        width: 100%;
-        height: 100%;
-        min-height: 420px;
-        border: 0;
-      }
-
-      .inquiry-box {
-        padding: 28px;
-      }
-
-      .inquiry-form {
-        display: grid;
-        gap: 18px;
-      }
-
-      .inquiry-form .field-row {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-
-      .cta-banner {
-        background: linear-gradient(135deg, rgba(11, 138, 199, 0.96), rgba(15, 101, 153, 0.98));
-        border-radius: 30px;
-        padding: clamp(26px, 5vw, 54px);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        box-shadow: var(--shadow);
-      }
-
-      .cta-banner h3 {
-        margin: 0 0 8px;
-        font-size: clamp(2rem, 4vw, 3rem);
-      }
-
-      .cta-banner p {
-        margin: 0;
-        color: rgba(255,255,255,0.8);
-        font-size: 1.1rem;
-      }
-
-      .cta-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      footer {
-        background: #0c2134;
-        color: rgba(255,255,255,0.9);
-        padding: 72px 0 24px;
-        margin-top: 70px;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr 0.9fr 1fr;
-        gap: 24px;
-        margin-bottom: 32px;
-      }
-
-      .footer-brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 800;
-        font-size: 1.7rem;
-      }
-
-      .footer-brand .brand-mark {
-        background: linear-gradient(135deg, #5abef9, #0d7ec7);
-      }
-
-      .footer-copy {
-        margin-top: 18px;
-        color: rgba(255,255,255,0.72);
-        line-height: 1.9;
-      }
-
-      .footer-title {
-        margin: 0 0 18px;
-        color: white;
-        font-size: 1.35rem;
-      }
-
-      .footer-links {
-        display: grid;
-        gap: 10px;
-        color: rgba(255,255,255,0.8);
-      }
-
-      .footer-links a {
-        transition: color 0.2s ease;
-      }
-
-      .footer-links a:hover {
-        color: white;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid rgba(255,255,255,0.14);
-        padding-top: 18px;
-        text-align: center;
-        color: rgba(255,255,255,0.72);
-      }
-
-      .socials {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-top: 18px;
-      }
-
-      .socials a {
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: rgba(255,255,255,0.08);
-        font-size: 1.4rem;
-        transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-        color: rgba(255,255,255,0.9);
-      }
-
-      .socials a:hover {
-        background: rgba(255,255,255,0.16);
-        transform: scale(1.1);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      }
-
-      .socials .wa-icon {
-        background: rgba(37, 211, 102, 0.2);
-        color: #25d366;
-        font-weight: 700;
-      }
-
-      .socials .wa-icon:hover {
-        background: rgba(37, 211, 102, 0.4);
-      }
-
+      .featured-card h3 { margin: 0 0 8px; font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--dark); }
+      .featured-card p { margin: 0; color: var(--muted); line-height: 1.8; }
+      .mini-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+      .mini-card { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 18px 12px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+      .mini-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(17, 95, 134, 0.06); }
+      .mini-card strong { display: block; font-size: 1.8rem; color: var(--dark); }
+      .mini-card span { color: var(--muted); font-size: 0.95rem; }
+      .process-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+      .step-card { background: white; border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px; box-shadow: 0 14px 24px rgba(17,95,134,0.04); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .step-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(17,95,134,0.08); }
+      .step-number { width: 62px; height: 62px; display: grid; place-items: center; border-radius: 18px; background: linear-gradient(135deg, rgba(11,138,199,.12), rgba(19,183,166,.12)); color: var(--primary-dark); font-size: 1.4rem; font-weight: 800; margin-bottom: 18px; }
+      .step-card h3 { margin: 0 0 12px; font-size: 1.5rem; color: var(--dark); }
+      .step-card p { margin: 0; color: var(--muted); line-height: 1.9; font-size: clamp(0.9rem, 1.2vw, 1rem); }
+      .review-summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: linear-gradient(135deg, rgba(11,138,199,0.1), rgba(19,183,166,0.12)); border: 1px solid rgba(11,138,199,0.12); border-radius: 26px; padding: 24px 28px; margin-bottom: 28px; backdrop-filter: blur(4px); }
+      .review-score { display: flex; align-items: center; gap: 18px; }
+      .score-box { width: 94px; height: 94px; border-radius: 24px; display: grid; place-items: center; background: linear-gradient(135deg, var(--primary), #59bdf5); color: white; font-size: 1.9rem; font-weight: 800; box-shadow: 0 18px 28px rgba(11,138,199,0.2); flex-shrink: 0; }
+      .score-text h3 { margin: 0; font-size: 2rem; color: var(--dark); }
+      .score-text span { color: var(--muted); }
+      .stars { display: inline-flex; gap: 4px; color: #ffb400; font-size: 1.1rem; margin-top: 8px; }
+      .btn-google { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 14px 20px; background: rgba(255,255,255,0.8); border: 1px solid rgba(11,138,199,0.12); color: var(--primary-dark); font-weight: 800; transition: background 0.2s, transform 0.2s; }
+      .btn-google:hover { background: white; transform: scale(1.02); }
+      .review-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+      .review-card { background: white; border: 1px solid var(--line); border-radius: 24px; padding: 22px 20px; box-shadow: 0 14px 24px rgba(17,95,134,0.04); transition: transform 0.2s, box-shadow 0.2s; }
+      .review-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(17,95,134,0.08); }
+      .review-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+      .review-user { display: flex; align-items: center; gap: 10px; }
+      .avatar { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, rgba(11,138,199,0.12), rgba(19,183,166,0.12)); color: var(--primary-dark); font-weight: 800; flex-shrink: 0; }
+      .review-user h4 { margin: 0; color: var(--dark); font-size: 1.1rem; }
+      .review-card p { margin: 12px 0 0; color: var(--muted); line-height: 1.9; font-size: clamp(0.9rem, 1.2vw, 1rem); }
+      .faq-wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 16px; }
+      .faq-item { background: white; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 12px 24px rgba(17,95,134,0.03); transition: box-shadow 0.2s; }
+      .faq-item:hover { box-shadow: 0 16px 32px rgba(17,95,134,0.06); }
+      .faq-question { width: 100%; border: none; background: transparent; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 1.08rem; color: var(--dark); font-weight: 700; text-align: right; cursor: pointer; font-family: inherit; }
+      .faq-icon { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: rgba(11,138,199,0.08); color: var(--primary-dark); font-weight: 900; transition: transform 0.3s ease; flex-shrink: 0; }
+      .faq-item.open .faq-icon { transform: rotate(45deg); }
+      .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; padding: 0 22px; color: var(--muted); line-height: 1.9; }
+      .faq-item.open .faq-answer { max-height: 300px; padding: 0 22px 20px; }
+      .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 28px; }
+      .info-box, .map-box, .inquiry-box { background: white; border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 16px 26px rgba(17,95,134,0.05); overflow: hidden; transition: box-shadow 0.2s; }
+      .info-box:hover, .map-box:hover, .inquiry-box:hover { box-shadow: 0 20px 40px rgba(17,95,134,0.08); }
+      .info-box { padding: 28px; }
+      .info-box h3, .inquiry-box h3 { margin: 0 0 12px; font-size: 2rem; color: var(--dark); }
+      .info-box p { margin: 0 0 20px; color: var(--muted); line-height: 1.9; }
+      .contact-list { display: grid; gap: 18px; margin-top: 24px; }
+      .contact-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 16px; background: rgba(11,138,199,0.04); transition: background 0.2s; }
+      .contact-item:hover { background: rgba(11,138,199,0.08); }
+      .contact-item .icon { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(11,138,199,0.12), rgba(19,183,166,0.12)); font-size: 1.5rem; transition: transform 0.2s; flex-shrink: 0; }
+      .contact-item:hover .icon { transform: scale(1.08); }
+      .contact-item strong { display: block; color: var(--dark); }
+      .contact-item a { color: var(--primary-dark); transition: color 0.2s; }
+      .contact-item a:hover { color: var(--primary); }
+      .map-box iframe { width: 100%; height: 100%; min-height: 420px; border: 0; display: block; }
+      .inquiry-box { padding: 28px; }
+      .inquiry-form { display: grid; gap: 18px; }
+      .inquiry-form .field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .cta-banner { background: linear-gradient(135deg, rgba(11, 138, 199, 0.96), rgba(15, 101, 153, 0.98)); border-radius: 30px; padding: clamp(26px, 5vw, 54px); color: white; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: var(--shadow); }
+      .cta-banner h3 { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 3rem); }
+      .cta-banner p { margin: 0; color: rgba(255,255,255,0.8); font-size: 1.1rem; }
+      .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+      footer { background: #0c2134; color: rgba(255,255,255,0.9); padding: 72px 0 24px; margin-top: 70px; }
+      .footer-grid { display: grid; grid-template-columns: 1.2fr 0.8fr 0.9fr 1fr; gap: 24px; margin-bottom: 32px; }
+      .footer-brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.7rem; }
+      .footer-brand .brand-mark { background: linear-gradient(135deg, #5abef9, #0d7ec7); }
+      .footer-copy { margin-top: 18px; color: rgba(255,255,255,0.72); line-height: 1.9; }
+      .footer-title { margin: 0 0 18px; color: white; font-size: 1.35rem; }
+      .footer-links { display: grid; gap: 10px; color: rgba(255,255,255,0.8); }
+      .footer-links a { transition: color 0.2s ease, transform 0.2s; display: inline-block; }
+      .footer-links a:hover { color: white; transform: translateX(-4px); }
+      .footer-bottom { border-top: 1px solid rgba(255,255,255,0.14); padding-top: 18px; text-align: center; color: rgba(255,255,255,0.72); }
+      .socials { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+      .socials a { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,0.08); font-size: 1.4rem; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; color: rgba(255,255,255,0.9); }
+      .socials a:hover { background: rgba(255,255,255,0.16); transform: scale(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+      .socials .wa-icon { background: rgba(37, 211, 102, 0.2); color: #25d366; font-weight: 700; }
+      .socials .wa-icon:hover { background: rgba(37, 211, 102, 0.4); }
       .floating-wa {
         position: fixed;
         left: 22px;
@@ -1253,22 +441,16 @@
         display: grid;
         place-items: center;
         box-shadow: 0 18px 30px rgba(18, 166, 95, 0.35);
-        font-size: 2.2rem;
         transition: transform 0.2s, box-shadow 0.2s;
         animation: pulse-wa 2s infinite ease-in-out;
       }
-
-      .floating-wa:hover {
-        transform: scale(1.12);
-        box-shadow: 0 22px 40px rgba(18, 166, 95, 0.45);
-      }
-
+      .floating-wa:hover { transform: scale(1.12); box-shadow: 0 22px 40px rgba(18, 166, 95, 0.45); }
+      .floating-wa svg { width: 36px; height: 36px; fill: white; }
       @keyframes pulse-wa {
         0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
         70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
         100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
       }
-
       .scroll-top {
         position: fixed;
         right: 22px;
@@ -1289,17 +471,8 @@
         display: grid;
         place-items: center;
       }
-
-      .scroll-top.visible {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .scroll-top:hover {
-        transform: scale(1.1);
-        box-shadow: 0 16px 40px rgba(11, 138, 199, 0.4);
-      }
-
+      .scroll-top.visible { opacity: 1; visibility: visible; }
+      .scroll-top:hover { transform: scale(1.1); box-shadow: 0 16px 40px rgba(11, 138, 199, 0.4); }
       .toast {
         position: fixed;
         top: 90px;
@@ -1309,287 +482,80 @@
         background: rgba(21,59,82,0.96);
         color: white;
         border-radius: 999px;
-        padding: 12px 18px;
+        padding: 12px 22px;
         font-weight: 700;
         pointer-events: none;
         transition: opacity 0.25s ease, transform 0.25s ease;
         z-index: 120;
+        white-space: nowrap;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       }
-
-      .toast.show {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-
+      .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+      .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+      .cart-overlay.open { opacity: 1; pointer-events: all; }
       .cart-panel {
         position: fixed;
         top: 0;
-        left: 0;
+        right: 0;
         width: min(420px, 100%);
         height: 100vh;
         background: white;
         box-shadow: 0 0 50px rgba(0,0,0,0.14);
-        transform: translateX(-105%);
-        transition: transform 0.28s ease;
+        transform: translateX(105%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 100;
         display: flex;
         flex-direction: column;
       }
-
-      .cart-panel.open {
-        transform: translateX(0);
-      }
-
-      .cart-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-        padding: 22px 20px 18px;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .cart-header h3 {
-        margin: 0;
-        font-size: 1.8rem;
-        color: var(--dark);
-      }
-
-      .close-cart {
-        width: 44px;
-        height: 44px;
-        border: none;
-        border-radius: 12px;
-        background: rgba(11,138,199,0.09);
-        color: var(--primary-dark);
-        cursor: pointer;
-        font-size: 1.5rem;
-        transition: background 0.2s;
-      }
-
-      .close-cart:hover {
-        background: rgba(11,138,199,0.18);
-      }
-
-      .cart-body {
-        flex: 1;
-        overflow-y: auto;
-        padding: 16px 20px;
-      }
-
-      .cart-empty {
-        color: var(--muted);
-        text-align: center;
-        padding: 30px 16px;
-        line-height: 1.9;
-      }
-
-      .cart-item {
-        display: grid;
-        gap: 14px;
-        padding: 16px 0;
-        border-bottom: 1px solid var(--line);
-      }
-
-      .cart-item-top {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-      }
-
-      .cart-item h4 {
-        margin: 0;
-        font-size: 1.2rem;
-        color: var(--dark);
-      }
-
-      .cart-item .price-tag {
-        font-weight: 800;
-        color: var(--primary-dark);
-      }
-
-      .cart-controls {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-      }
-
-      .cart-actions {
-        display: flex;
-        gap: 8px;
-      }
-
-      .mini-btn {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        border: none;
-        background: rgba(11,138,199,0.08);
-        color: var(--primary-dark);
-        cursor: pointer;
-        font-size: 1.2rem;
-        font-weight: 700;
-        transition: background 0.2s;
-      }
-
-      .mini-btn:hover {
-        background: rgba(11,138,199,0.16);
-      }
-
-      .cart-remove {
-        border: none;
-        background: transparent;
-        color: #d94d5c;
-        font-weight: 700;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-
-      .cart-remove:hover {
-        color: #b33b48;
-      }
-
-      .cart-footer {
-        border-top: 1px solid var(--line);
-        padding: 18px 20px 20px;
-      }
-
-      .cart-footer .field {
-        margin-bottom: 12px;
-      }
-
-      .cart-footer .field label {
-        font-weight: 700;
-        color: var(--dark);
-        display: block;
-        margin-bottom: 6px;
-      }
-
-      .cart-footer .location-row {
-        display: flex;
-        gap: 8px;
-      }
-
-      .cart-footer .location-row input {
-        flex: 1;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        padding: 12px 14px;
-        background: #f9fcff;
-        font-size: 0.95rem;
-        transition: border 0.2s;
-      }
-
-      .cart-footer .location-row input:focus {
-        border-color: var(--primary);
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(11, 138, 199, 0.1);
-      }
-
-      .cart-footer .ghost-btn {
-        border: none;
-        border-radius: 12px;
-        background: rgba(11,138,199,.1);
-        color: var(--primary-dark);
-        font-weight: 700;
-        padding: 0 16px;
-        cursor: pointer;
-        white-space: nowrap;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        transition: background 0.2s, transform 0.2s;
-      }
-
-      .cart-footer .ghost-btn:hover {
-        background: rgba(11,138,199,.2);
-        transform: scale(1.03);
-      }
-
-      .cart-footer .summary-list {
-        margin-top: 12px;
-      }
-
-      .cart-footer .summary-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--line);
-        font-size: 0.95rem;
-      }
-
-      .cart-footer .summary-item strong {
-        color: var(--dark);
-      }
-
-      .cart-footer .summary-item span {
-        color: var(--muted);
-      }
-
-      .cart-footer .summary-total {
-        margin-top: 16px;
-        padding-top: 12px;
-        border-top: 1px solid var(--line);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 1.1rem;
-        font-weight: 800;
-        color: var(--dark);
-      }
-
-      .cart-footer .wa-button {
-        width: 100%;
-        margin-top: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 16px 18px;
-        border: none;
-        border-radius: 16px;
-        background: linear-gradient(135deg, #16bf73, #0ca954);
-        color: white;
-        font-size: 1.05rem;
-        font-weight: 800;
-        cursor: pointer;
-        box-shadow: 0 16px 30px rgba(22, 191, 115, 0.18);
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .cart-footer .wa-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 40px rgba(22, 191, 115, 0.25);
-      }
-
-      .total-line {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 1.15rem;
-        font-weight: 800;
-        color: var(--dark);
-        margin-bottom: 16px;
-      }
-
-      .continue-order {
-        display: none;
-      }
+      .cart-panel.open { transform: translateX(0); }
+      .cart-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 22px 20px 18px; border-bottom: 1px solid var(--line); }
+      .cart-header h3 { margin: 0; font-size: 1.8rem; color: var(--dark); }
+      .close-cart { width: 44px; height: 44px; border: none; border-radius: 12px; background: rgba(11,138,199,0.09); color: var(--primary-dark); cursor: pointer; font-size: 1.5rem; display: grid; place-items: center; transition: background 0.2s; }
+      .close-cart:hover { background: rgba(11,138,199,0.18); }
+      .cart-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
+      .cart-empty { color: var(--muted); text-align: center; padding: 40px 16px; line-height: 1.9; }
+      .cart-item { display: grid; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+      .cart-item-top { display: flex; justify-content: space-between; gap: 12px; }
+      .cart-item h4 { margin: 0; font-size: 1.2rem; color: var(--dark); }
+      .cart-item .price-tag { font-weight: 800; color: var(--primary-dark); white-space: nowrap; }
+      .cart-controls { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+      .cart-actions { display: flex; gap: 8px; align-items: center; }
+      .mini-btn { width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(11,138,199,0.08); color: var(--primary-dark); cursor: pointer; font-size: 1.2rem; font-weight: 700; display: grid; place-items: center; transition: background 0.2s; }
+      .mini-btn:hover { background: rgba(11,138,199,0.16); }
+      .cart-remove { border: none; background: transparent; color: #d94d5c; font-weight: 700; cursor: pointer; padding: 4px 8px; border-radius: 8px; transition: background 0.2s; }
+      .cart-remove:hover { background: rgba(217, 77, 92, 0.08); }
+      .cart-footer { border-top: 1px solid var(--line); padding: 18px 20px 20px; }
+      .cart-footer .field { margin-bottom: 12px; }
+      .cart-footer .field label { font-weight: 700; color: var(--dark); display: block; margin-bottom: 6px; }
+      .cart-footer .location-row { display: flex; gap: 8px; }
+      .cart-footer .location-row input { flex: 1; border-radius: 12px; border: 1px solid var(--line); padding: 12px 14px; background: #f9fcff; font-size: 0.95rem; font-family: inherit; transition: border 0.2s, box-shadow 0.2s; }
+      .cart-footer .location-row input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(11, 138, 199, 0.1); }
+      .cart-footer .ghost-btn { border: none; border-radius: 12px; background: rgba(11,138,199,.1); color: var(--primary-dark); font-weight: 700; padding: 0 16px; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s, transform 0.2s; font-family: inherit; }
+      .cart-footer .ghost-btn:hover { background: rgba(11,138,199,.2); transform: scale(1.03); }
+      .cart-footer .summary-list { margin-top: 12px; }
+      .cart-footer .summary-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+      .cart-footer .summary-item strong { color: var(--dark); }
+      .cart-footer .summary-item span { color: var(--muted); }
+      .cart-footer .summary-total { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; font-size: 1.1rem; font-weight: 800; color: var(--dark); }
+      .cart-footer .wa-button { width: 100%; margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 18px; border: none; border-radius: 16px; background: linear-gradient(135deg, #16bf73, #0ca954); color: white; font-size: 1.05rem; font-weight: 800; cursor: pointer; box-shadow: 0 16px 30px rgba(22, 191, 115, 0.18); transition: transform 0.2s, box-shadow 0.2s; font-family: inherit; }
+      .cart-footer .wa-button:hover { transform: translateY(-2px); box-shadow: 0 20px 40px rgba(22, 191, 115, 0.25); }
+      .field { display: grid; gap: 10px; }
+      .field label { font-weight: 700; color: var(--dark); }
+      .field input, .field textarea { width: 100%; border-radius: 14px; border: 1px solid var(--line); background: #f9fcff; padding: 14px 16px; color: var(--text); font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+      .field input:focus, .field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(11, 138, 199, 0.1); }
+      .field textarea { min-height: 120px; resize: vertical; max-width: 100%; }
+      .location-row { display: flex; gap: 12px; }
+      .location-row input { flex: 1; }
+      .ghost-btn { border: none; border-radius: 14px; background: rgba(11,138,199,.1); color: var(--primary-dark); font-weight: 700; padding: 0 16px; cursor: pointer; font-family: inherit; transition: background 0.2s; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+      .ghost-btn:hover { background: rgba(11,138,199,.2); }
 
       @media (max-width: 980px) {
-        .nav {
-          flex-wrap: wrap;
-          row-gap: 12px;
-        }
-
+        .nav { flex-wrap: wrap; row-gap: 12px; }
         .nav-links {
           position: absolute;
           top: calc(100% + 8px);
-          right: 0;
           left: 0;
+          right: 0;
           background: rgba(255,255,255,0.98);
           box-shadow: var(--shadow);
           border: 1px solid var(--line);
@@ -1599,12 +565,9 @@
           align-items: flex-start;
           padding: 18px 16px;
           z-index: 30;
+          gap: 16px;
         }
-
-        .nav-links.open {
-          display: flex;
-        }
-
+        .nav-links.open { display: flex; }
         .menu-toggle {
           display: grid;
           place-items: center;
@@ -1616,386 +579,140 @@
           color: var(--dark);
           cursor: pointer;
           font-size: 1.4rem;
+          order: 3;
         }
-
-        .nav-actions {
-          margin-right: auto;
-        }
-
-        .hero-box,
-        .featured-strip,
-        .order-shell,
-        .contact-grid,
-        .footer-grid,
-        .review-summary {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-box {
-          display: grid;
-        }
-
-        .featured-strip,
-        .review-summary {
-          display: grid;
-        }
-
-        .feature-grid,
-        .products-grid,
-        .process-grid,
-        .review-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .location-row,
-        .cart-controls,
-        .cta-banner,
-        .product-meta,
-        .product-header {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .product-meta {
-          align-items: flex-start;
-        }
-
-        .scroll-top {
-          right: 14px;
-          bottom: 90px;
-          width: 48px;
-          height: 48px;
-          font-size: 1.4rem;
-        }
-
-        .floating-wa {
-          left: 14px;
-          bottom: 14px;
-          width: 58px;
-          height: 58px;
-          font-size: 1.8rem;
-        }
+        .nav-actions { margin-right: auto; margin-left: 0; }
+        .hero-box, .featured-strip, .contact-grid, .footer-grid, .review-summary { grid-template-columns: 1fr; }
+        .feature-grid, .products-grid, .process-grid, .review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .product-meta, .product-header { flex-direction: column; align-items: flex-start; }
+        .cta-banner { flex-direction: column; align-items: flex-start; text-align: center; }
+        .cta-banner > div { width: 100%; }
+        .cta-actions { width: 100%; justify-content: center; }
+        .scroll-top { right: 14px; bottom: 90px; width: 48px; height: 48px; font-size: 1.4rem; }
+        .floating-wa { left: 14px; bottom: 14px; width: 58px; height: 58px; }
+        .floating-wa svg { width: 30px; height: 30px; }
       }
-
       @media (max-width: 640px) {
-        .container {
-          width: min(100% - 20px, 1180px);
-        }
-
-        .feature-grid,
-        .products-grid,
-        .process-grid,
-        .mini-cards,
-        .review-grid,
-        .inquiry-form .field-row {
-          grid-template-columns: 1fr;
-        }
-
-        .nav {
-          padding: 12px 0;
-        }
-
-        .brand {
-          font-size: 1.2rem;
-          gap: 8px;
-        }
-
-        .brand span {
-          max-width: 160px;
-          line-height: 1.5;
-        }
-
-        .brand-mark {
-          width: 40px;
-          height: 40px;
-        }
-
-        .hero {
-          padding-top: 28px;
-        }
-
-        .hero-box,
-        .order-box,
-        .summary-box,
-        .info-box,
-        .map-box,
-        .inquiry-box,
-        .cta-banner {
-          border-radius: 20px;
-        }
-
-        .cta-banner {
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 22px 18px;
-        }
-
-        .floating-wa {
-          width: 56px;
-          height: 56px;
-          left: 14px;
-          bottom: 14px;
-          font-size: 1.7rem;
-        }
-
-        .scroll-top {
-          right: 14px;
-          bottom: 80px;
-          width: 44px;
-          height: 44px;
-          font-size: 1.2rem;
-        }
-
-        .nav-actions {
-          width: auto;
-          justify-content: flex-end;
-          margin-inline-start: auto;
-        }
-
-        .nav-actions .btn-secondary {
-          display: none;
-        }
-
-        .btn,
-        .btn-primary,
-        .btn-secondary,
-        .ghost-btn,
-        .continue-order,
-        .wa-button {
-          width: 100%;
-        }
-
-        .hero-actions,
-        .cta-actions {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .review-summary {
-          padding: 18px 16px;
-        }
-
-        .score-box {
-          width: 72px;
-          height: 72px;
-          font-size: 1.5rem;
-        }
-
-        .mobile-section-title {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          background: rgba(11,138,199,0.06);
-          border: 1px solid rgba(11,138,199,0.12);
-          border-radius: 14px;
-          padding: 14px 16px;
-          margin-bottom: 14px;
-          text-align: center;
-        }
-
-        .mobile-section-content {
-          display: none;
-        }
-
-        .mobile-section-title.open + .mobile-section-content {
-          display: block;
-        }
-
-        .product-card {
-          overflow: hidden;
-        }
-
-        .product-image {
-          height: auto;
-          aspect-ratio: 1 / 1;
-        }
-
-        .map-box iframe {
-          min-height: 280px;
-        }
-
-        .why-section,
-        .products-section,
-        .order-section,
-        .process-section,
-        .contact-section,
-        .cta-section,
-        .review-section,
-        .faq-section {
-          padding: 40px 0;
-        }
-
-        .cart-panel {
-          width: 100%;
-        }
-
-        .cart-footer .location-row {
-          flex-direction: column;
-        }
-
-        .cart-footer .ghost-btn {
-          padding: 10px;
-          width: 100%;
-          text-align: center;
-        }
+        .container { width: min(100% - 20px, 1180px); }
+        .feature-grid, .products-grid, .process-grid, .mini-cards, .review-grid, .inquiry-form .field-row { grid-template-columns: 1fr; }
+        .nav { padding: 12px 0; }
+        .brand { font-size: 1.2rem; gap: 8px; }
+        .brand span { max-width: 160px; line-height: 1.5; }
+        .brand-mark { width: 40px; height: 40px; font-size: 1rem; }
+        .hero { padding-top: 28px; }
+        .hero-box, .info-box, .map-box, .inquiry-box, .cta-banner { border-radius: 20px; }
+        .hero-image { min-height: 200px; }
+        .cta-banner { align-items: center; padding: 22px 18px; text-align: center; }
+        .cta-actions { flex-direction: column; align-items: stretch; width: 100%; }
+        .floating-wa { width: 56px; height: 56px; left: 14px; bottom: 14px; }
+        .floating-wa svg { width: 28px; height: 28px; }
+        .scroll-top { right: 14px; bottom: 80px; width: 44px; height: 44px; font-size: 1.2rem; }
+        .nav-actions .btn-secondary { display: none; }
+        .btn, .btn-primary, .btn-secondary, .ghost-btn, .wa-button { width: 100%; }
+        .hero-actions { flex-direction: column; align-items: stretch; }
+        .review-summary { padding: 18px 16px; flex-direction: column; text-align: center; }
+        .review-score { flex-direction: column; }
+        .score-box { width: 72px; height: 72px; font-size: 1.5rem; }
+        .product-image { height: 200px; }
+        .map-box iframe { min-height: 280px; }
+        .why-section, .products-section, .process-section, .contact-section, .cta-section, .review-section, .faq-section { padding: 40px 0; }
+        .cart-panel { width: 100%; }
+        .cart-footer .location-row { flex-direction: column; }
+        .cart-footer .ghost-btn { padding: 12px; width: 100%; text-align: center; }
+        .location-row { flex-direction: column; }
       }
     </style>
   </head>
   <body>
+    <div class="cart-overlay" id="cartOverlay"></div>
     <div class="topbar">
       <div class="container nav">
         <div class="brand" aria-label="رواء للمياه">
           <div class="brand-mark">💧</div>
-          <span> مصنع رواء تعز للمياه </span>
+          <span>مصنع رواء تعز للمياه</span>
         </div>
-
-        <nav class="nav-links" id="navLinks" aria-label="التنقل">
-          <a href="#home">الرئيسية</a>
-          <a href="#products">المنتجات</a>
-          <a href="#products">اطلب الآن</a>
-          <a href="#faq">الأسئلة الشائعة</a>
-          <a href="#testimonials">تقييمات العملاء</a>
-          <a href="#contact">تواصل معنا</a>
+        <nav class="nav-links" id="navLinks" aria-label="التنقل الرئيسي">
+          <a href="#home" data-section="home" class="active">الرئيسية</a>
+          <a href="#products" data-section="products">المنتجات</a>
+          <a href="#products" data-section="products">اطلب الآن</a>
+          <a href="#faq" data-section="faq">الأسئلة الشائعة</a>
+          <a href="#testimonials" data-section="testimonials">تقييمات العملاء</a>
+          <a href="#contact" data-section="contact">تواصل معنا</a>
         </nav>
-
         <div class="nav-actions">
-          <button class="btn btn-secondary" type="button">تصفح المنتجات</button>
+          <a href="#products" class="btn btn-secondary" data-section="products">تصفح المنتجات</a>
           <button class="cart-button" id="cartToggle" aria-label="فتح السلة">
-            🛒
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             <span class="cart-count" id="cartCount">0</span>
           </button>
           <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
         </div>
       </div>
     </div>
-
     <main id="home">
-      <section class="hero">
+      <section class="hero active" data-nav-section="home">
         <div class="container hero-box">
-          <div>
+          <div style="position: relative; z-index: 1;">
             <div class="eyebrow">💧 جودة ونقاء</div>
             <h1>رواء... نقاء يروي عطشك 💧</h1>
-            <p class="hero-text">
-              مياه نقية ومشروبات منعشة بجودة عالية، نوصّلها إليك بسهولة أينما كنت.
-            </p>
+            <p class="hero-text">مياه نقية ومشروبات منعشة بجودة عالية، نوصّلها إليك بسهولة أينما كنت في تعز.</p>
             <div class="hero-actions">
-              <a href="#products" class="btn btn-primary">اطلب الآن</a>
-              <a href="#products" class="btn btn-secondary">تصفح المنتجات</a>
+              <a href="#products" class="btn btn-primary" data-section="products">اطلب الآن</a>
+              <a href="#products" class="btn btn-secondary" data-section="products">تصفح المنتجات</a>
             </div>
             <div class="stats">
-              <div class="stat">
-                <strong>4.9</strong>
-                <span>تقييم العملاء</span>
-              </div>
-              <div class="stat">
-                <strong>24/7</strong>
-                <span>توصيل سريع</span>
-              </div>
-              <div class="stat">
-                <strong>1,200+</strong>
-                <span>طلب تم بنجاح</span>
-              </div>
+              <div class="stat"><strong>4.9</strong><span>تقييم العملاء</span></div>
+              <div class="stat"><strong>24/7</strong><span>توصيل سريع</span></div>
+              <div class="stat"><strong>1,200+</strong><span>طلب تم بنجاح</span></div>
             </div>
           </div>
-
-          <div class="hero-image" role="img" aria-label="أسطول نقل رواء للمياه"></div>
+          <img src="metal can2.jpeg" class="hero-image" alt="مياه رواء النقية" loading="eager" />
         </div>
       </section>
-
-      <section class="why-section">
+      <section class="why-section" data-nav-section="home">
         <div class="container">
           <h2 class="section-title">لماذا تختار رواء؟</h2>
           <div class="feature-grid">
-            <article class="feature-card">
-              <div class="feature-icon">💧</div>
-              <h3>نقاء وجودة</h3>
-              <p>نهتم بجودة المياه ونحرص على تقديم منتجات تلبي توقعات عملائنا.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">🚚</div>
-              <h3>توصيل مريح</h3>
-              <p>اطلب احتياجاتك بسهولة وسنساعدك في إيصالها إلى موقعك.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">⚡</div>
-              <h3>طلب سريع</h3>
-              <p>اختر الكمية وأدخل موقعك وأرسل طلبك مباشرة عبر واتساب.</p>
-            </article>
-            <article class="feature-card">
-              <div class="feature-icon">🤝</div>
-              <h3>ثقة وخدمة</h3>
-              <p>نسعى لتقديم تجربة سهلة وخدمة تلبي احتياجات عملائنا.</p>
-            </article>
+            <article class="feature-card"><div class="feature-icon">💧</div><h3>نقاء وجودة</h3><p>نهتم بجودة المياه ونحرص على تقديم منتجات تلبي توقعات عملائنا.</p></article>
+            <article class="feature-card"><div class="feature-icon">🚚</div><h3>توصيل مريح</h3><p>اطلب احتياجاتك بسهولة وسنساعدك في إيصالها إلى موقعك في تعز.</p></article>
+            <article class="feature-card"><div class="feature-icon">⚡</div><h3>طلب سريع</h3><p>اختر الكمية وأدخل موقعك وأرسل طلبك مباشرة عبر واتساب.</p></article>
+            <article class="feature-card"><div class="feature-icon">🤝</div><h3>ثقة وخدمة</h3><p>نسعى لتقديم تجربة سهلة وخدمة تلبي احتياجات عملائنا.</p></article>
           </div>
         </div>
       </section>
-
-      <section class="products-section" id="products">
+      <section class="products-section" id="products" data-nav-section="products">
         <div class="container">
           <h2 class="section-title">منتجاتنا</h2>
-          <p class="section-subtitle">
-            اختر من منتجات رواء ما يناسب احتياجاتك، وحدد الكمية المطلوبة وأضفها إلى السلة.
-          </p>
-
+          <p class="section-subtitle">اختر من منتجات رواء ما يناسب احتياجاتك، وحدد الكمية المطلوبة وأضفها إلى السلة.</p>
           <div class="products-grid" id="productGrid"></div>
-
           <div class="featured-strip">
             <div class="featured-card">
-              <div>
-                <h3>انتعاشك يبدأ من رواء</h3>
-                <p>مياه معدنية، عصائر، ومشروبات طبيعية تناسب كل لحظة من يومك.</p>
-              </div>
-              <a href="#order" class="btn btn-primary">اكتشف جميع المنتجات</a>
+              <div><h3>انتعاشك يبدأ من رواء</h3><p>مياه معدنية، عصائر، ومشروبات طبيعية تناسب كل لحظة من يومك.</p></div>
+              <a href="#contact" class="btn btn-primary" data-section="contact">تواصل معنا</a>
             </div>
             <div class="mini-cards">
-              <div class="mini-card">
-                <strong>💧</strong>
-                <span>مياه معدنية</span>
-              </div>
-              <div class="mini-card">
-                <strong>🧃</strong>
-                <span>عصائر</span>
-              </div>
-              <div class="mini-card">
-                <strong>🍃</strong>
-                <span>طبيعية</span>
-              </div>
+              <div class="mini-card"><strong>💧</strong><span>مياه معدنية</span></div>
+              <div class="mini-card"><strong>🧃</strong><span>عصائر</span></div>
+              <div class="mini-card"><strong>🍃</strong><span>طبيعية</span></div>
             </div>
           </div>
         </div>
       </section>
-
-      <section class="process-section">
+      <section class="process-section" data-nav-section="products">
         <div class="container">
           <h2 class="section-title">طريقة الطلب</h2>
           <div class="process-grid">
-            <article class="step-card">
-              <div class="step-number">01</div>
-              <h3>اختر منتجاتك</h3>
-              <p>اختر المنتج والكمية التي تحتاجها.</p>
-            </article>
-            <article class="step-card">
-              <div class="step-number">02</div>
-              <h3>أضف إلى السلة</h3>
-              <p>أضف المنتجات التي تريدها إلى سلة الطلبات.</p>
-            </article>
-            <article class="step-card">
-              <div class="step-number">03</div>
-              <h3>أكمل الطلب</h3>
-              <p>افتح السلة، أدخل موقع التوصيل، واضغط إرسال الطلب عبر واتساب.</p>
-            </article>
+            <article class="step-card"><div class="step-number">01</div><h3>اختر منتجاتك</h3><p>اختر المنتج والكمية التي تحتاجها من قائمة منتجاتنا المتنوعة.</p></article>
+            <article class="step-card"><div class="step-number">02</div><h3>أضف إلى السلة</h3><p>أضف المنتجات التي تريدها إلى سلة الطلبات بضغطة واحدة.</p></article>
+            <article class="step-card"><div class="step-number">03</div><h3>أكمل الطلب</h3><p>افتح السلة، أدخل موقع التوصيل، واضغط إرسال الطلب عبر واتساب.</p></article>
           </div>
         </div>
       </section>
 
-      <section class="review-section" id="testimonials">
+      <section class="review-section" id="testimonials" data-nav-section="testimonials">
         <div class="container">
           <h2 class="section-title">تقييمات العملاء</h2>
-          <p class="section-subtitle">
-            نحرص على جودة الخدمة والانتظار السريع، وتقييمات العملاء تعكس ثقتهم بنا منذ البداية.
-          </p>
-
+          <p class="section-subtitle">نحرص على جودة الخدمة والتوصيل السريع، وتقييمات العملاء تعكس ثقتهم بنا منذ البداية.</p>
           <div class="review-summary">
             <div class="review-score">
               <div class="score-box">4.9</div>
@@ -2005,38 +722,29 @@
                 <span>من أكثر من 1200 تقييم</span>
               </div>
             </div>
-            <a class="btn-google" href="https://www.google.com/search?q=%D9%85%D8%B5%D9%86%D8%A7%D9%86+%D8%B1%D9%88%D8%A7%D8%A1+%D8%AA%D8%B9%D8%B2+%D8%A7%D9%84%D9%85%D9%85%D9%8A%D8%A9+%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9+%D9%88%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%A8%D8%A7%D8%AA" target="_blank" rel="noreferrer">أضف تقييمك على Google</a>
+            <a class="btn-google" href="https://www.google.com/search?q=مصنع+رواء+تعز+للمياه" target="_blank" rel="noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              أضف تقييمك على Google
+            </a>
           </div>
-
           <div class="review-grid">
             <article class="review-card">
               <div class="review-top">
-                <div class="review-user">
-                  <div class="avatar">م</div>
-                  <h4>محمد</h4>
-                </div>
+                <div class="review-user"><div class="avatar">م</div><h4>محمد</h4></div>
                 <div class="stars">★★★★★</div>
               </div>
-              <p>طلبنا للمكتب ولبثت الخدمة سريعة جدًا، والمياه ممتازة والرد سريع من الشركة.</p>
+              <p>طلبنا للمكتب وكانت الخدمة سريعة جدًا، والمياه ممتازة والرد سريع من الشركة.</p>
             </article>
-
             <article class="review-card">
               <div class="review-top">
-                <div class="review-user">
-                  <div class="avatar">أ</div>
-                  <h4>أحمد</h4>
-                </div>
+                <div class="review-user"><div class="avatar">أ</div><h4>أحمد</h4></div>
                 <div class="stars">★★★★★</div>
               </div>
               <p>تجربة ممتازة، التوصيل في الوقت المحدد، والمنتج عالي الجودة. أنصح بالتعامل معهم.</p>
             </article>
-
             <article class="review-card">
               <div class="review-top">
-                <div class="review-user">
-                  <div class="avatar">س</div>
-                  <h4>سارة</h4>
-                </div>
+                <div class="review-user"><div class="avatar">س</div><h4>سارة</h4></div>
                 <div class="stars">★★★★★</div>
               </div>
               <p>خدمة رائعة جدًا، خاصة في الطلبات المتكررة، وسهلة وواضحة جدًا مع التواصل عبر واتساب.</p>
@@ -2044,134 +752,76 @@
           </div>
         </div>
       </section>
-
-      <section class="faq-section" id="faq">
+      <section class="faq-section" id="faq" data-nav-section="faq">
         <div class="container">
           <h2 class="section-title">الأسئلة الشائعة</h2>
           <div class="faq-wrap">
             <div class="faq-item open">
-              <button class="faq-question" type="button">
-                <span>هل يوجد توصيل داخل المدينة؟</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                نعم، نوفر خدمة التوصيل داخل المدينة وداخل المناطق القريبة وفق وقت التوصيل المتاح، مع متابعة الطلب مباشرة عبر واتساب.
-              </div>
+              <button class="faq-question" type="button"><span>هل يوجد توصيل داخل المدينة؟</span><span class="faq-icon">+</span></button>
+              <div class="faq-answer">نعم، نوفر خدمة التوصيل داخل المدينة وداخل المناطق القريبة وفق وقت التوصيل المتاح، مع متابعة الطلب مباشرة عبر واتساب.</div>
             </div>
-
             <div class="faq-item">
-              <button class="faq-question" type="button">
-                <span>كيف يمكنني تقديم الطلب؟</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                اختر المنتج والكمية، أضفه للسلة، ثم افتح السلة وأدخل عنوان التوصيل واضغط إرسال الطلب عبر واتساب.
-              </div>
+              <button class="faq-question" type="button"><span>كيف يمكنني تقديم الطلب؟</span><span class="faq-icon">+</span></button>
+              <div class="faq-answer">اختر المنتج والكمية، أضفه للسلة، ثم افتح السلة وأدخل عنوان التوصيل واضغط إرسال الطلب عبر واتساب.</div>
             </div>
-
             <div class="faq-item">
-              <button class="faq-question" type="button">
-                <span>هل توجد أسعار خاصة للطلبات الكبيرة؟</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                نعم، نقدم أسعار مميزة للطلبات الكبيرة للشركات، المطاعم، المناسبات، والمشاريع، ويمكنك التواصل معنا مباشرة للحصول على العرض المناسب.
-              </div>
+              <button class="faq-question" type="button"><span>هل توجد أسعار خاصة للطلبات الكبيرة؟</span><span class="faq-icon">+</span></button>
+              <div class="faq-answer">نعم، نقدم أسعار مميزة للطلبات الكبيرة للشركات، المطاعم، المناسبات، والمشاريع، ويمكنك التواصل معنا مباشرة للحصول على العرض المناسب.</div>
             </div>
-
             <div class="faq-item">
-              <button class="faq-question" type="button">
-                <span>هل يمكن طلب المنتج في أكثر من نوع؟</span>
-                <span class="faq-icon">+</span>
-              </button>
-              <div class="faq-answer">
-                نعم، يمكنك إضافة أكثر من منتج في السلة في نفس الوقت، وتحديد الكمية المطلوبة لكل منتج قبل إرسال الطلب.
-              </div>
+              <button class="faq-question" type="button"><span>هل يمكن طلب أكثر من نوع؟</span><span class="faq-icon">+</span></button>
+              <div class="faq-answer">نعم، يمكنك إضافة أكثر من منتج في السلة في نفس الوقت، وتحديد الكمية المطلوبة لكل منتج قبل إرسال الطلب.</div>
             </div>
           </div>
         </div>
       </section>
-
-      <section class="contact-section" id="contact">
+      <section class="contact-section" id="contact" data-nav-section="contact">
         <div class="container">
           <h2 class="section-title">تواصل معنا</h2>
           <div class="contact-grid">
             <div class="info-box">
               <h3>هل لديك استفسار أو طلب خاص؟</h3>
               <p>فريق رواء للمياه جاهز لخدمتك.</p>
-
               <div class="contact-list">
                 <div class="contact-item">
                   <div class="icon">📞</div>
-                  <div>
-                    <strong>الهاتف:</strong>
-                    <a href="tel:777222356">777222356</a>
-                  </div>
+                  <div><strong>الهاتف:</strong><a href="tel:+967777222356">777222356</a></div>
                 </div>
                 <div class="contact-item">
                   <div class="icon">📱</div>
-                  <div>
-                    <strong>واتساب:</strong>
-                    <a href="https://wa.me/777222359" target="_blank">777222359</a>
-                  </div>
+                  <div><strong>واتساب:</strong><a href="https://wa.me/967777222359" target="_blank">777222359</a></div>
                 </div>
                 <div class="contact-item">
                   <div class="icon">✉️</div>
-                  <div>
-                    <strong>البريد الإلكتروني:</strong>
-                    <a href="mailto:info@rawa-water.com">info@rawa-water.com</a>
-                  </div>
+                  <div><strong>البريد:</strong><a href="mailto:info@rawa-water.com">info@rawa-water.com</a></div>
                 </div>
                 <div class="contact-item">
                   <div class="icon">📍</div>
-                  <div>
-                    <strong>العنوان</strong>
-                    <span>تعز - اليمن</span>
-                  </div>
+                  <div><strong>العنوان</strong><span>تعز - اليمن</span></div>
                 </div>
               </div>
             </div>
-
             <div class="map-box">
-              <iframe
-                src="https://www.google.com/maps?q=Riyadh%20Saudi%20Arabia&z=12&output=embed"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="خريطة مصنع رواء للمياه"
-              ></iframe>
+              <iframe src="https://www.google.com/maps?q=Taiz+Yemen&z=14&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="خريطة مصنع رواء للمياه"></iframe>
             </div>
           </div>
-
           <div class="inquiry-box" style="margin-top: 28px;">
             <h3>لديك استفسار؟</h3>
-            <form class="inquiry-form">
+            <form class="inquiry-form" onsubmit="event.preventDefault(); showToast('✅ تم إرسال استفسارك بنجاح'); this.reset();">
               <div class="field-row">
-                <div class="field">
-                  <label>الاسم</label>
-                  <input type="text" placeholder="اكتب اسمك" />
-                </div>
-                <div class="field">
-                  <label>رقم الهاتف</label>
-                  <input type="tel" placeholder="رقم الهاتف" />
-                </div>
+                <div class="field"><label>الاسم</label><input type="text" placeholder="اكتب اسمك" required /></div>
+                <div class="field"><label>رقم الهاتف</label><input type="tel" placeholder="رقم الهاتف" required /></div>
               </div>
               <div class="field-row">
-                <div class="field">
-                  <label>نوع الطلب</label>
-                  <input type="text" placeholder="مثال: طلب جديد - استفسار" />
-                </div>
-                <div class="field">
-                  <label>رسالة</label>
-                  <textarea placeholder="اكتب رسالتك هنا..."></textarea>
-                </div>
+                <div class="field"><label>نوع الطلب</label><input type="text" placeholder="مثال: طلب جديد - استفسار" /></div>
+                <div class="field"><label>رسالة</label><textarea placeholder="اكتب رسالتك هنا..." required></textarea></div>
               </div>
-              <button type="button" class="btn btn-primary">إرسال الاستفسار</button>
+              <button type="submit" class="btn btn-primary">إرسال الاستفسار</button>
             </form>
           </div>
         </div>
       </section>
-
-      <section class="cta-section">
+      <section class="cta-section" data-nav-section="home">
         <div class="container">
           <div class="cta-banner">
             <div>
@@ -2179,35 +829,29 @@
               <p>مياه نقية ومشروبات منعشة تصل إليك بسهولة.</p>
             </div>
             <div class="cta-actions">
-              <a href="#products" class="btn btn-primary" style="background: white; color: var(--primary-dark);">اطلب الآن</a>
-              <a href="#products" class="btn btn-secondary" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white;">تصفح المنتجات</a>
+              <a href="#products" class="btn btn-primary" style="background: white; color: var(--primary-dark);" data-section="products">اطلب الآن</a>
+              <a href="#products" class="btn btn-secondary" style="background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white;" data-section="products">تصفح المنتجات</a>
             </div>
           </div>
         </div>
       </section>
     </main>
-
     <footer>
       <div class="container">
         <div class="footer-grid">
           <div>
-            <div class="footer-brand">
-              <div class="brand-mark">💧</div>
-              <span>رواء للمياه</span>
-            </div>
+            <div class="footer-brand"><div class="brand-mark">💧</div><span>رواء للمياه</span></div>
             <p class="footer-copy">مياه نقية... جودة تثق بها.</p>
           </div>
-
           <div>
             <h4 class="footer-title">روابط سريعة</h4>
             <div class="footer-links">
-              <a href="#home">الرئيسية</a>
-              <a href="#products">المنتجات</a>
-              <a href="#order">الطلب</a>
-              <a href="#contact">تواصل معنا</a>
+              <a href="#home" data-section="home">الرئيسية</a>
+              <a href="#products" data-section="products">المنتجات</a>
+              <a href="#faq" data-section="faq">الأسئلة الشائعة</a>
+              <a href="#contact" data-section="contact">تواصل معنا</a>
             </div>
           </div>
-
           <div>
             <h4 class="footer-title">تواصل معنا</h4>
             <div class="footer-links">
@@ -2217,35 +861,24 @@
               <a href="https://maps.google.com/?q=Taiz+Yemen" target="_blank" rel="noreferrer">العنوان</a>
             </div>
           </div>
-
           <div>
             <h4 class="footer-title">وسائل التواصل</h4>
             <div class="socials">
               <a href="https://wa.me/967777222359" target="_blank" rel="noreferrer" aria-label="واتساب" class="wa-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               </a>
               <a href="#" aria-label="فيسبوك">f</a>
               <a href="#" aria-label="إنستغرام">◎</a>
             </div>
           </div>
         </div>
-
         <div class="footer-bottom">© 2026 رواء للمياه — جميع الحقوق محفوظة</div>
       </div>
     </footer>
-
-    <!-- أيقونة واتساب العائمة -->
     <a href="https://wa.me/967777222359" class="floating-wa" aria-label="واتساب" target="_blank" rel="noreferrer">
-      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
-
-    <!-- زر العودة للأعلى -->
-    <button class="scroll-top" id="scrollTopBtn" aria-label="العودة إلى الأعلى">↑</button>
-
+    <button class="scroll-top" id="scrollTopBtn" aria-label="العودة للأعلى">↑</button>
     <aside class="cart-panel" id="cartPanel" aria-label="سلة الطلبات">
       <div class="cart-header">
         <h3>سلة الطلبات</h3>
@@ -2266,59 +899,42 @@
           <span id="cartTotal">0 ريال</span>
         </div>
         <button type="button" class="wa-button" id="sendWhatsAppBtn">
-          📱 إرسال الطلب عبر واتساب
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          إرسال الطلب عبر واتساب
         </button>
       </div>
     </aside>
-
     <div class="toast" id="toast">✅ تمت إضافة المنتج إلى السلة</div>
 
     <script>
       const products = [
-        {
-          id: 1,
-          name: "مياه رواء",
-          description: "مياه معدنية نقية ومنعشة مناسبة للمنزل والمكتب والمناسبات.",
-          price: 3500,
-          category: "مياه",
-          image: "water.jpg"
-        }
-      ];
-
+        { id: 1, name: "مياه رواء - كرتون 20 قارورة", description: "مياه معدنية نقية ومنعشة مناسبة للمنزل والمكتب والمناسبات.", price: 3500, category: "مياه", image: "water-bottle.jpeg" },
+        
+       ];
       let cart = [];
-
-      function formatPrice(value) {
-        return `${Number(value).toLocaleString("en-US")} ريال`;
-      }
-
-      function getProductById(id) {
-        return products.find((product) => product.id === Number(id));
-      }
+      function formatPrice(value) { return `${Number(value).toLocaleString("en-US")} ريال`; }
+      function getProductById(id) { return products.find(p => p.id === Number(id)); }
 
       function renderProducts() {
         const grid = document.getElementById("productGrid");
-        grid.innerHTML = products.map((product) => `
-          <article class="product-card">
-            <div class="product-image" style="background-image: url('${product.image}'); background-size: cover; background-position: center;"></div>
+        grid.innerHTML = products.map(p => `
+          <article class="product-card" data-product-id="${p.id}">
+            <div class="product-image" style="background-image: url('${p.image}');" data-img-id="${p.id}"></div>
             <div class="product-body">
-              <div class="product-header">
-                <h3 class="product-name">${product.name}</h3>
-                <span class="product-pill">${product.category}</span>
-              </div>
-              <p class="product-desc">${product.description}</p>
+              <div class="product-header"><h3 class="product-name">${p.name}</h3><span class="product-pill">${p.category}</span></div>
+              <p class="product-desc">${p.description}</p>
               <div class="product-meta">
-                <div class="price-block">
-                  <div class="price">${formatPrice(product.price)}</div>
-                  <div class="product-total" data-total-id="${product.id}">الإجمالي: ${formatPrice(product.price)}</div>
-                </div>
-
-                <div class="quantity-box" data-product-id="${product.id}">
-                  <button class="qty-btn" type="button" data-change="minus" data-id="${product.id}">−</button>
-                  <span class="qty-value" data-qty-id="${product.id}">1</span>
-                  <button class="qty-btn" type="button" data-change="plus" data-id="${product.id}">+</button>
+                <div class="price-block"><div class="price">${formatPrice(p.price)}</div><div class="product-total" data-total-id="${p.id}">الإجمالي: ${formatPrice(p.price)}</div></div>
+                <div class="quantity-box" data-product-id="${p.id}">
+                  <button class="qty-btn" type="button" data-change="minus" data-id="${p.id}">−</button>
+                  <span class="qty-value" data-qty-id="${p.id}">1</span>
+                  <button class="qty-btn" type="button" data-change="plus" data-id="${p.id}">+</button>
                 </div>
               </div>
-              <button class="add-btn" type="button" data-add-id="${product.id}">أضف إلى السلة 🛒</button>
+              <button class="add-btn" type="button" data-add-id="${p.id}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                أضف إلى السلة
+              </button>
             </div>
           </article>
         `).join("");
@@ -2326,411 +942,202 @@
       }
 
       function refreshProductTotals() {
-        products.forEach((product) => {
-          const qtyEl = document.querySelector(`[data-qty-id="${product.id}"]`);
-          const totalEl = document.querySelector(`[data-total-id="${product.id}"]`);
+        products.forEach(p => {
+          const qtyEl = document.querySelector(`[data-qty-id="${p.id}"]`);
+          const totalEl = document.querySelector(`[data-total-id="${p.id}"]`);
           if (!qtyEl || !totalEl) return;
-          const qty = Number(qtyEl.textContent || 1);
-          totalEl.textContent = `الإجمالي: ${formatPrice(product.price * qty)}`;
+          totalEl.textContent = `الإجمالي: ${formatPrice(p.price * Number(qtyEl.textContent || 1))}`;
         });
       }
 
-      function setQty(productId, amount) {
-        const qtyEl = document.querySelector(`[data-qty-id="${productId}"]`);
-        if (!qtyEl) return;
-        const nextValue = Math.max(1, Number(qtyEl.textContent || 1) + amount);
-        qtyEl.textContent = nextValue;
+      function setQty(pid, amt) {
+        const el = document.querySelector(`[data-qty-id="${pid}"]`);
+        if (el) el.textContent = Math.max(1, Number(el.textContent || 1) + amt);
       }
 
-      function addToCart(productId, qty = 1) {
-        const product = getProductById(productId);
-        if (!product) return;
-
-        const existing = cart.find((item) => item.id === productId);
-        if (existing) {
-          existing.qty += qty;
-        } else {
-          cart.push({ id: productId, qty });
-        }
-
+      function addToCart(pid, qty = 1) {
+        const p = getProductById(pid);
+        if (!p) return;
+        const ex = cart.find(i => i.id === pid);
+        if (ex) ex.qty += qty; else cart.push({ id: pid, qty });
         updateCartUI();
         showToast("✅ تمت إضافة المنتج إلى السلة");
+        bounceCart();
       }
 
-      function removeFromCart(productId) {
-        cart = cart.filter((item) => item.id !== productId);
-        updateCartUI();
+      function bounceCart() {
+        const b = document.getElementById("cartCount");
+        b.classList.add("bounce");
+        setTimeout(() => b.classList.remove("bounce"), 300);
       }
 
-      function changeCartQty(productId, delta) {
-        const item = cart.find((entry) => entry.id === productId);
+      function removeFromCart(pid) { cart = cart.filter(i => i.id !== pid); updateCartUI(); }
+
+      function changeCartQty(pid, d) {
+        const item = cart.find(e => e.id === pid);
         if (!item) return;
-        item.qty += delta;
-        if (item.qty <= 0) removeFromCart(productId);
-        updateCartUI();
+        item.qty += d;
+        if (item.qty <= 0) removeFromCart(pid); else updateCartUI();
       }
 
       function updateCartUI() {
-        const cartItems = document.getElementById("cartItems");
-        const cartCount = document.getElementById("cartCount");
-        const cartTotal = document.getElementById("cartTotal");
-        const summaryList = document.getElementById("cartSummaryList");
-        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-
-        cartCount.textContent = totalItems;
-
+        const items = document.getElementById("cartItems");
+        const count = document.getElementById("cartCount");
+        const total = document.getElementById("cartTotal");
+        const list = document.getElementById("cartSummaryList");
+        const totalItems = cart.reduce((s, i) => s + i.qty, 0);
+        count.textContent = totalItems;
         if (!cart.length) {
-          cartItems.innerHTML = '<div class="cart-empty">🛒 سلة الطلبات فارغة<br>ابدأ بإضافة منتجاتك.</div>';
-          cartTotal.textContent = "0 ريال";
-          summaryList.innerHTML = '';
-          return;
+          items.innerHTML = '<div class="cart-empty">🛒 سلة الطلبات فارغة<br>ابدأ بإضافة منتجاتك.</div>';
+          total.textContent = "0 ريال"; list.innerHTML = ''; return;
         }
-
-        const totalPrice = cart.reduce((sum, item) => {
-          const product = getProductById(item.id);
-          return sum + (product ? product.price * item.qty : 0);
-        }, 0);
-
-        cartTotal.textContent = formatPrice(totalPrice);
-
-        cartItems.innerHTML = cart.map((item) => {
-          const product = getProductById(item.id);
-          if (!product) return "";
-          return `
-            <div class="cart-item">
-              <div class="cart-item-top">
-                <h4>${product.name}</h4>
-                <div class="price-tag">${formatPrice(product.price)}</div>
-              </div>
-              <div class="cart-controls">
-                <div class="cart-actions">
-                  <button class="mini-btn" type="button" data-cart-minus="${product.id}">−</button>
-                  <span>${item.qty}</span>
-                  <button class="mini-btn" type="button" data-cart-plus="${product.id}">+</button>
-                </div>
-                <button class="cart-remove" type="button" data-cart-remove="${product.id}">حذف</button>
-              </div>
-            </div>
-          `;
+        const totalPrice = cart.reduce((s, i) => { const p = getProductById(i.id); return s + (p ? p.price * i.qty : 0); }, 0);
+        total.textContent = formatPrice(totalPrice);
+        items.innerHTML = cart.map(i => {
+          const p = getProductById(i.id);
+          if (!p) return "";
+          return `<div class="cart-item"><div class="cart-item-top"><h4>${p.name}</h4><div class="price-tag">${formatPrice(p.price)}</div></div><div class="cart-controls"><div class="cart-actions"><button class="mini-btn" type="button" data-cart-minus="${p.id}">−</button><span>${i.qty}</span><button class="mini-btn" type="button" data-cart-plus="${p.id}">+</button></div><button class="cart-remove" type="button" data-cart-remove="${p.id}">حذف</button></div></div>`;
         }).join("");
-
-        let summaryHTML = '';
-        let total = 0;
-        cart.forEach((item) => {
-          const product = getProductById(item.id);
-          if (!product) return;
-          const subtotal = product.price * item.qty;
-          total += subtotal;
-          summaryHTML += `
-            <div class="summary-item">
-              <div>
-                <strong>${product.name}</strong>
-                <span> × ${item.qty}</span>
-              </div>
-              <span>${formatPrice(subtotal)}</span>
-            </div>
-          `;
-        });
-        summaryList.innerHTML = summaryHTML;
-        cartTotal.textContent = formatPrice(total);
+        let html = '', t = 0;
+        cart.forEach(i => { const p = getProductById(i.id); if (!p) return; const st = p.price * i.qty; t += st; html += `<div class="summary-item"><div><strong>${p.name}</strong><span> × ${i.qty}</span></div><span>${formatPrice(st)}</span></div>`; });
+        list.innerHTML = html; total.textContent = formatPrice(t);
       }
 
-      function showToast(message) {
+      function showToast(msg) {
         const toast = document.getElementById("toast");
-        toast.textContent = message;
+        toast.textContent = msg;
         toast.classList.add("show");
         clearTimeout(window.toastTimer);
-        window.toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+        window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
       }
 
-      // عكس الإحداثيات للحصول على عنوان
-      async function reverseGeocode(lat, lng) {
-        const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=ar`;
-        try {
-          const response = await fetch(url);
-          if (!response.ok) throw new Error("فشل جلب العنوان");
-          const data = await response.json();
-          if (data && data.display_name) {
-            return data.display_name;
-          } else {
-            return `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-          }
-        } catch (error) {
-          console.error("Reverse geocoding error:", error);
-          return `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
-        }
+      /* ===== SECTION NAVIGATION ===== */
+      function showSection(sectionName) {
+        document.querySelectorAll("main > section").forEach(sec => {
+          sec.classList.toggle("active", sec.dataset.navSection === sectionName);
+        });
+        document.querySelectorAll(".nav-links a[data-section]").forEach(link => {
+          link.classList.toggle("active", link.dataset.section === sectionName);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // تحديد الموقع
-      document.getElementById("locateBtn").addEventListener("click", async () => {
-        if (!navigator.geolocation) {
-          showToast("❗ خدمة الموقع غير مدعومة في هذا المتصفح");
-          return;
-        }
-
-        const btn = document.getElementById("locateBtn");
-        const originalText = btn.innerHTML;
-        btn.innerHTML = "⏳ جاري التحديد...";
-        btn.disabled = true;
-
-        try {
-          const position = await new Promise((resolve, reject) => {
-            navigator.geolocation.getCurrentPosition(resolve, reject, {
-              enableHighAccuracy: true,
-              timeout: 10000,
-              maximumAge: 0,
-            });
-          });
-
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-
-          document.getElementById("deliveryAddress").value = `⏳ جاري جلب العنوان...`;
-
-          const address = await reverseGeocode(lat, lng);
-          document.getElementById("deliveryAddress").value = address;
-          showToast("✅ تم تحديد موقعك بنجاح");
-        } catch (error) {
-          console.error("Location error:", error);
-          showToast("❗ تعذر تحديد الموقع، الرجاء إدخال العنوان يدويًا");
-        } finally {
-          btn.innerHTML = originalText;
-          btn.disabled = false;
+      document.addEventListener("click", e => {
+        const link = e.target.closest("[data-section]");
+        if (link) {
+          e.preventDefault();
+          const sec = link.dataset.section;
+          if (sec) showSection(sec);
+          document.getElementById("navLinks")?.classList.remove("open");
         }
       });
 
+      /* ===== FLY TO CART ===== */
+      function flyToCart(pid, btn) {
+        const card = document.querySelector(`[data-product-id="${pid}"]`);
+        const img = card?.querySelector(`[data-img-id="${pid}"]`);
+        const cartBtn = document.getElementById("cartToggle");
+        if (!img || !cartBtn) return;
+        const r = img.getBoundingClientRect();
+        const cr = cartBtn.getBoundingClientRect();
+        const fly = document.createElement("img");
+        fly.src = products.find(p => p.id === pid)?.image || "";
+        fly.className = "fly-image";
+        fly.style.cssText = `width:${r.width}px;height:${r.height}px;left:${r.left}px;top:${r.top}px;`;
+        document.body.appendChild(fly);
+        const dx = cr.left + cr.width / 2 - r.left - r.width / 2;
+        const dy = cr.top + cr.height / 2 - r.top - r.height / 2;
+        fly.animate([
+          { transform: "translate(0,0) scale(1)", opacity: 1 },
+          { transform: `translate(${dx * 0.5}px,${dy * 0.5}px) scale(0.6) rotate(10deg)`, opacity: 0.8, offset: 0.5 },
+          { transform: `translate(${dx}px,${dy}px) scale(0.15) rotate(0deg)`, opacity: 0 }
+        ], { duration: 700, easing: "cubic-bezier(0.4,0,0.2,1)" }).onfinish = () => fly.remove();
+      }
+
+      /* ===== CLICK HANDLERS ===== */
+      document.addEventListener("click", e => {
+        const addBtn = e.target.closest("[data-add-id]");
+        if (addBtn) {
+          const pid = Number(addBtn.dataset.addId);
+          const qtyEl = document.querySelector(`[data-qty-id="${pid}"]`);
+          const qty = Number(qtyEl?.textContent || 1);
+          flyToCart(pid, addBtn);
+          setTimeout(() => { addToCart(pid, qty); if (qtyEl) qtyEl.textContent = 1; refreshProductTotals(); }, 300);
+        }
+        const plus = e.target.closest("[data-change='plus']");
+        if (plus) { setQty(Number(plus.dataset.id), 1); refreshProductTotals(); }
+        const minus = e.target.closest("[data-change='minus']");
+        if (minus) {
+          const el = document.querySelector(`[data-qty-id="${minus.dataset.id}"]`);
+          if (el) { el.textContent = Math.max(1, Number(el.textContent || 1) - 1); refreshProductTotals(); }
+        }
+        if (e.target.closest("[data-cart-plus]")) changeCartQty(Number(e.target.closest("[data-cart-plus]").dataset.cartPlus), 1);
+        if (e.target.closest("[data-cart-minus]")) changeCartQty(Number(e.target.closest("[data-cart-minus]").dataset.cartMinus), -1);
+        if (e.target.closest("[data-cart-remove]")) removeFromCart(Number(e.target.closest("[data-cart-remove]").dataset.cartRemove));
+        if (e.target.closest("#cartToggle")) { document.getElementById("cartPanel").classList.add("open"); document.getElementById("cartOverlay").classList.add("open"); document.body.style.overflow = "hidden"; }
+        if (e.target.closest("#closeCart") || e.target.closest("#cartOverlay")) { document.getElementById("cartPanel").classList.remove("open"); document.getElementById("cartOverlay").classList.remove("open"); document.body.style.overflow = ""; }
+        if (e.target.closest("#sendWhatsAppBtn")) sendWhatsAppOrder();
+        if (e.target.closest("#menuToggle")) document.getElementById("navLinks").classList.toggle("open");
+      });
+
+      /* ===== WHATSAPP ORDER ===== */
       function getWhatsAppMessage() {
-        const address = document.getElementById("deliveryAddress").value.trim() || "غير محدد";
-        const total = cart.reduce((sum, item) => {
-          const product = getProductById(item.id);
-          return sum + (product ? product.price * item.qty : 0);
-        }, 0);
-        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-
-        const productText = cart.map((item) => {
-          const product = getProductById(item.id);
-          return `- ${product?.name || "منتج"}: ${item.qty} كرتون`;
-        }).join("\n");
-
-        return encodeURIComponent(
-          `السلام عليكم، أرغب في طلب من رواء للمياه:\n\n` +
-          `💧 المنتجات:\n${productText}\n\n` +
-          `📦 عدد الكراتين: ${totalQty}\n` +
-          `💰 السعر الإجمالي: ${formatPrice(total).replace(" ريال", " ريال")}\n` +
-          `📍 موقع التوصيل: ${address}\n\n` +
-          `شكرًا لكم.`
-        );
+        const addr = document.getElementById("deliveryAddress").value.trim() || "غير محدد";
+        const total = cart.reduce((s, i) => { const p = getProductById(i.id); return s + (p ? p.price * i.qty : 0); }, 0);
+        const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+        const pt = cart.map(i => { const p = getProductById(i.id); return `- ${p?.name || "منتج"}: ${i.qty} كرتون`; }).join("\n");
+        return encodeURIComponent(`السلام عليكم، أرغب في طلب من رواء للمياه:\n\n💧 المنتجات:\n${pt}\n\n📦 عدد الكراتين: ${totalQty}\n💰 السعر الإجمالي: ${formatPrice(total).replace(" ريال", " ريال")}\n📍 موقع التوصيل: ${addr}\n\nشكرًا لكم.`);
       }
 
       function sendWhatsAppOrder() {
-        if (!cart.length) {
-          showToast("❗ لا توجد منتجات في السلة");
-          return;
-        }
-        const message = getWhatsAppMessage();
-        window.open(`https://wa.me/967777222359?text=${message}`, "_blank");
+        if (!cart.length) { showToast("❗ لا توجد منتجات في السلة"); return; }
+        window.open(`https://wa.me/967777222359?text=${getWhatsAppMessage()}`, "_blank");
       }
 
-      // ----- أحداث النقر -----
-      document.addEventListener("click", (event) => {
-        const addButton = event.target.closest("[data-add-id]");
-        if (addButton) {
-          const productId = Number(addButton.dataset.addId);
-          const qtyEl = document.querySelector(`[data-qty-id="${productId}"]`);
-          const quantity = Number(qtyEl?.textContent || 1);
-          addToCart(productId, quantity);
-          qtyEl.textContent = 1;
-          refreshProductTotals();
-        }
+      /* ===== GEOLOCATION ===== */
+      async function reverseGeocode(lat, lng) {
+        try {
+          const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1&accept-language=ar`);
+          if (!r.ok) throw new Error("fail");
+          const d = await r.json();
+          return d?.display_name || `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
+        } catch { return `${lat.toFixed(5)}, ${lng.toFixed(5)}`; }
+      }
 
-        const plusButton = event.target.closest("[data-change='plus']");
-        if (plusButton) {
-          const productId = plusButton.dataset.id || "";
-          if (productId) {
-            setQty(Number(productId), 1);
-            refreshProductTotals();
-          }
-        }
-
-        const minusButton = event.target.closest("[data-change='minus']");
-        if (minusButton) {
-          const productId = minusButton.dataset.id || "";
-          if (productId) {
-            const qtyEl = document.querySelector(`[data-qty-id="${productId}"]`);
-            if (qtyEl) {
-              const nextValue = Math.max(1, Number(qtyEl.textContent || 1) - 1);
-              qtyEl.textContent = nextValue;
-              refreshProductTotals();
-            }
-          }
-        }
-
-        const cartPlus = event.target.closest("[data-cart-plus]");
-        if (cartPlus) {
-          changeCartQty(Number(cartPlus.dataset.cartPlus), 1);
-        }
-
-        const cartMinus = event.target.closest("[data-cart-minus]");
-        if (cartMinus) {
-          changeCartQty(Number(cartMinus.dataset.cartMinus), -1);
-        }
-
-        const cartRemove = event.target.closest("[data-cart-remove]");
-        if (cartRemove) {
-          removeFromCart(Number(cartRemove.dataset.cartRemove));
-        }
-
-        if (event.target.closest("#cartToggle")) {
-          document.getElementById("cartPanel").classList.add("open");
-        }
-
-        if (event.target.closest("#closeCart")) {
-          document.getElementById("cartPanel").classList.remove("open");
-        }
-
-        if (event.target.closest("#sendWhatsAppBtn")) {
-          sendWhatsAppOrder();
-        }
-
-        if (event.target.closest("#menuToggle")) {
-          document.getElementById("navLinks").classList.toggle("open");
-        }
+      document.getElementById("locateBtn").addEventListener("click", async () => {
+        if (!navigator.geolocation) { showToast("❗ خدمة الموقع غير مدعومة"); return; }
+        const btn = document.getElementById("locateBtn");
+        const orig = btn.innerHTML;
+        btn.innerHTML = "⏳ جاري..."; btn.disabled = true;
+        try {
+          const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }));
+          const inp = document.getElementById("deliveryAddress");
+          inp.value = "⏳ جاري جلب العنوان...";
+          const addr = await reverseGeocode(pos.coords.latitude, pos.coords.longitude);
+          inp.value = addr; showToast("✅ تم تحديد موقعك");
+        } catch { showToast("❗ تعذر تحديد الموقع"); }
+        finally { btn.innerHTML = orig; btn.disabled = false; }
       });
 
-      // ======== معالجة الروابط الداخلية مع فتح الأقسام المطوية ========
-      document.querySelectorAll('a[href^="#"]').forEach((link) => {
-        link.addEventListener("click", (event) => {
-          const targetId = link.getAttribute("href");
-          if (!targetId || targetId === "#") return;
-
-          const sectionId = targetId.replace("#", "");
-          const targetSection = document.getElementById(sectionId);
-          if (!targetSection) return;
-
-          event.preventDefault();
-          window.history.pushState(null, "", targetId);
-
-          const headerHeight = document.querySelector(".topbar")?.offsetHeight || 90;
-          const sectionPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = sectionPosition - headerHeight - 20;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-
-          // إغلاق القائمة في الجوال
-          const navLinks = document.getElementById("navLinks");
-          if (navLinks) navLinks.classList.remove("open");
-
-          // فتح القسم المطوي في الجوال (بعد التأكد من اكتمال التمرير)
-          setTimeout(() => {
-            const container = targetSection.querySelector(".container");
-            if (!container) return;
-            const title = container.querySelector(".section-title");
-            if (title && title.classList.contains("mobile-section-title")) {
-              const isOpen = title.classList.contains("open");
-              if (!isOpen) {
-                title.classList.add("open");
-                const content = container.querySelector(".mobile-section-content");
-                if (content) content.style.display = "block";
-                title.setAttribute("aria-expanded", "true");
-              }
-            }
-          }, 400);
+      /* ===== FAQ ===== */
+      document.querySelectorAll(".faq-question").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const wasOpen = item.classList.contains("open");
+          document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+          if (!wasOpen) item.classList.add("open");
         });
       });
 
-      // ----- زر العودة للأعلى -----
+      /* ===== SCROLL TO TOP ===== */
       const scrollBtn = document.getElementById("scrollTopBtn");
+      window.addEventListener("scroll", () => scrollBtn.classList.toggle("visible", window.scrollY > 300));
+      scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-          scrollBtn.classList.add("visible");
-        } else {
-          scrollBtn.classList.remove("visible");
-        }
-      });
-
-      scrollBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-
-      // ----- طي الأقسام في الجوال -----
-      function setupMobileSections() {
-        const isMobile = window.matchMedia("(max-width: 640px)").matches;
-
-        document.querySelectorAll("main > section").forEach((section) => {
-          if (section.id === "home") return;
-
-          const container = section.querySelector(".container");
-          if (!container) return;
-
-          const title = container.querySelector(".section-title");
-          if (!title) return;
-
-          let contentWrapper = container.querySelector(".mobile-section-content");
-          if (!contentWrapper) {
-            contentWrapper = document.createElement("div");
-            contentWrapper.className = "mobile-section-content";
-            const children = Array.from(container.children).filter((child) => child !== title);
-            children.forEach((child) => contentWrapper.appendChild(child));
-            container.appendChild(contentWrapper);
-          }
-
-          if (isMobile) {
-            title.classList.add("mobile-section-title");
-            title.setAttribute("role", "button");
-            title.setAttribute("tabindex", "0");
-            if (!title.classList.contains("open")) {
-              contentWrapper.style.display = "none";
-              title.setAttribute("aria-expanded", "false");
-            } else {
-              contentWrapper.style.display = "block";
-              title.setAttribute("aria-expanded", "true");
-            }
-          } else {
-            title.classList.remove("mobile-section-title", "open");
-            title.removeAttribute("role");
-            title.removeAttribute("tabindex");
-            contentWrapper.style.display = "block";
-            title.setAttribute("aria-expanded", "true");
-          }
-
-          if (!title.dataset.mobileAccordionBound) {
-            const toggleSection = () => {
-              const isOpen = title.classList.contains("open");
-              title.classList.toggle("open", !isOpen);
-              contentWrapper.style.display = isOpen ? "none" : "block";
-              title.setAttribute("aria-expanded", String(!isOpen));
-            };
-
-            title.addEventListener("click", toggleSection);
-            title.addEventListener("keydown", (event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                toggleSection();
-              }
-            });
-            title.dataset.mobileAccordionBound = "true";
-          }
-        });
-      }
-
-      setupMobileSections();
-      window.addEventListener("resize", setupMobileSections);
-
-      // الأسئلة الشائعة
-      document.querySelectorAll(".faq-question").forEach((button) => {
-        button.addEventListener("click", () => {
-          const item = button.closest(".faq-item");
-          item.classList.toggle("open");
-        });
-      });
-
-      // تهيئة الصفحة
+      /* ===== INIT ===== */
       renderProducts();
       updateCartUI();
+      showSection("home");
     </script>
   </body>
 </html>
